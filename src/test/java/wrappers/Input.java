@@ -4,31 +4,25 @@ import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.SleepSomeTime;
+
+import static com.codeborne.selenide.Selectors.byXpath;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+
 @Log4j2
 public class Input {
     String label;
-    WebDriver driver;
-    String baseLocator = "//*[text()='%s']/..//input";
-    //String addressLocator = "//*[text()='%s']/ancestor::div[contains(@class, 'uiInput')]//input";
-    String dayLocator = "//*[text()='%s']/../..//input";
-    public Input(WebDriver driver, String label) {
-        this.driver = driver;
+    String baseLocator = "//*[text()='%s']/../..//input";
+
+    public Input(String label) {
+        getWebDriver();
         this.label = label;
     }
     public void write(String text) {
         log.info("Writing {} into {}", text, label);
-        driver.findElement(By.xpath(String.format(baseLocator, label))).sendKeys(text);
+        $x((String.format(baseLocator, label))).setValue(text);
         SleepSomeTime.delay(300);
     }
 
-    public void writeAddress(String text) {
-        log.info("Writing {} into {}", text, label);
-        driver.findElement(By.xpath(String.format(baseLocator, label))).sendKeys(text);
-        SleepSomeTime.delay(300);
-    }
-    public void writeDay(String text) {
-        log.info("Writing {} into {}", text, label);
-        driver.findElement(By.xpath(String.format(dayLocator, label))).sendKeys(text);
-        SleepSomeTime.delay(300);
-    }
 }
