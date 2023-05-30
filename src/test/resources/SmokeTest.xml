@@ -12,7 +12,7 @@
     </test> <!-- Test -->
     <test name="Thread #2">
         <classes>
-            <class name="tests.AccountsTest"/>
+            <class name="tests.NewProjectTest"/>
         </classes>
     </test> <!-- Test -->
 

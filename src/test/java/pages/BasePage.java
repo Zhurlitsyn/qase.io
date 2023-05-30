@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 class BasePage {
+    public static final String BASE_URL = "https://app.qase.io";
+
 
     public void waitForPageLoaded() {
         new ExpectedCondition<Boolean>() {
