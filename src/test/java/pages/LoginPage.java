@@ -25,9 +25,9 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    @Step("Login by user")
+    @Step("Login user")
     public ProjectListPage login() {
-        log.info("Login by user");
+        log.info("Login user by positive data");
         String logUser = System.getProperty("username", PropertyReader.getProperty("USERNAME"));
         String logPswrd = System.getProperty("password", PropertyReader.getProperty("PASSWORD"));
         $(USERNAME_INPUT).setValue(logUser);

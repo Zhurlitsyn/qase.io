@@ -1,5 +1,6 @@
 package tests;
 
+import adapters.ProjectAdapter;
 import com.codeborne.selenide.Condition;
 import dto.Project;
 import dto.ProjectFactory;
@@ -33,5 +34,11 @@ public class NewProjectTest extends BaseTest {
         $("#project-code").shouldHave(value(project.getCode()));
         $("#description-area").shouldHave(value(project.getDescription()));
 
+    }
+
+    @Test
+    public void createQProject() {
+        Project project = new ProjectFactory().getRandom();
+        new ProjectAdapter().create(project);
     }
 }

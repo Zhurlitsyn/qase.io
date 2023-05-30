@@ -28,7 +28,7 @@ public class ProjectListPage extends BasePage {
         return this;
     }
 
-    @Step("Wait opening Project page")
+    @Step("Waits opening Project page")
     public ProjectListPage openPage() {
         log.info("Wait opening Project page");
         open("/projects");

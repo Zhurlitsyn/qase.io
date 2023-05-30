@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.open;
 
 @Log4j2
 public class LoginTest extends BaseTest {
-    @Test(description = "Try login user")
+    @Test(description = "Login user by")
     public void login() {
         log.info("Try login user");
         loginPage.openPage()
