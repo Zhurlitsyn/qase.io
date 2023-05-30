@@ -17,7 +17,7 @@ public class NewProjectTest extends BaseTest {
     public void createNewProject() {
 
         log.info("Login user");
-        loginPage.openLP()
+        loginPage.openPage()
                 .isPageOpened()
                 .login()
                 .isPageOpened()

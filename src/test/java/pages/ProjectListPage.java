@@ -17,7 +17,6 @@ public class ProjectListPage extends BasePage {
 
     public static final String CREATE_BUTTON = "#createButton";
     public static final By PROJECTS_CODES = By.xpath("//*[@class='project-row']//a[@class='defect-title']");
-    //public static final String PROJECTS_CODE = "//tr[@class='project-row']//a[text()='%s']";
     public static List<WebElement> listOfProjects;
     public int listSize;
     public String lastProjectCode;

@@ -40,15 +40,6 @@ public class BaseTest {
         projectSettingsPage = new ProjectSettingsPage();
     }
 
-    @Step("Filling Project data new/update")
-    public void fillIn(Project project) {
-        log.info("Filling project data {}", project);
-        $(byText("Public")).click();
-        $("#project-name").setValue(project.getTitle());
-        $("#project-code").setValue(project.getCode());
-        $("#description-area").setValue(project.getDescription());
-    }
-
     @AfterMethod(alwaysRun = true)
     public void close() {
         if (getWebDriver() != null) {
