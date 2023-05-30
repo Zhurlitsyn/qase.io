@@ -43,7 +43,7 @@ public class ProjectSettingsPage extends BasePage {
     }
 
 
-    @Step("Click Delete Project Button")
+    @Step("Click Update Project Button")
     public ProjectSettingsPage updateButtonClick() {
         $(UPDATE_BUTTON).click();
         return this;

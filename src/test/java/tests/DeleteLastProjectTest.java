@@ -1,6 +1,5 @@
 package tests;
 
-import com.codeborne.selenide.CollectionCondition;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
@@ -12,9 +11,9 @@ import static org.testng.Assert.assertEquals;
 
 @Log4j2
 public class DeleteLastProjectTest extends BaseTest {
-    @Test(description = "Try to delete last project")
+    @Test(description = "Deleting last project")
     public void deleteLast() {
-        loginPage.openLP()
+        loginPage.openPage()
                 .isPageOpened()
                 .login()
                 .isPageOpened();

@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 
 public class Project {
-String title;
-String code;
-String description;
+    String title;
+    String code;
+    String description;
 }

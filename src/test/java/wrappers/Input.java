@@ -16,7 +16,6 @@ public class Input {
     String baseLocator = "//*[text()='%s']/../..//input";
 
     public Input(String label) {
-        getWebDriver();
         this.label = label;
     }
     public void write(String text) {

@@ -16,7 +16,7 @@ public class UpdateSettingsProjectTest extends BaseTest {
     @Test(description = "Try update settings of project")
     public void updateSettingsProject() {
         log.info("Login user");
-        loginPage.openLP()
+        loginPage.openPage()
                 .isPageOpened()
                 .login()
                 .isPageOpened()
@@ -41,9 +41,6 @@ public class UpdateSettingsProjectTest extends BaseTest {
         $("#project-name").shouldBe(value(project.getTitle()));
         $("#project-code").shouldHave(value(project.getCode()));
         $("#description-area").shouldHave(value(project.getDescription()));
-
-
-
 
     }
 }
