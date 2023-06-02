@@ -1,10 +1,8 @@
 package pages;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import utils.SleepSomeTime;
 
@@ -16,15 +14,18 @@ import static com.codeborne.selenide.Selenide.*;
 public class ProjectListPage extends BasePage {
 
     public static final String CREATE_BUTTON = "#createButton";
-    public static final By PROJECTS_CODES = By.xpath("//*[@class='project-row']//a[@class='defect-title']");
-    public static List<WebElement> listOfProjects;
-    public int listSize;
+    public static final String PROJECTS_CODES =
+            "//*[@class='project-row']//a[@class='defect-title']";
+    public static final String DROPDOWN_PROJECT_BUTTON =
+            "//*[text()='%s']/ancestor::tr//a[@class='btn btn-dropdown']";
+    public static final String DROPDOWN_DELETE_BUTTON =
+            "//*[@class='defect-title'][text()='%s']/ancestor::tr//button[text()='Delete']";
     public String lastProjectCode;
 
 
     public ProjectListPage isPageOpened() {
         $(CREATE_BUTTON).shouldBe(Condition.visible);
-        SleepSomeTime.delay(10000);
+        //SleepSomeTime.delay(5000);
         return this;
     }
 
@@ -37,23 +38,24 @@ public class ProjectListPage extends BasePage {
     }
 
     @Step("Click Create Button")
-    public NewProjectPage createButtonClick() {
+    public ProjectPage createButtonClick() {
         $(CREATE_BUTTON).click();
-        return new NewProjectPage();
+        return new ProjectPage();
     }
 
     @Step("Create List of Project Names")
-    public List<WebElement> createProjectList() {
-        log.info("Create List of Projects");
-        if (listOfProjects != null) {
-            listOfProjects.clear();
-        }
-        return listOfProjects = WebDriverRunner.getWebDriver().findElements(PROJECTS_CODES);
+    public Integer getCountOfProjects() {
+        log.info("Get count of Projects");
+        return $$x(PROJECTS_CODES).size();
     }
 
-    @Step("Getting size of List")
-    public Integer getListSize(List<WebElement> list) {
-        return list.size();
+    @Step("Deleting project from ProjectListPage")
+    public void deleteProject(String name) {
+        log.info("Deleting project by 'Delete' modal button");
+        $x(String.format(DROPDOWN_PROJECT_BUTTON, name)).click();
+        $x(String.format(DROPDOWN_DELETE_BUTTON, name)).click();
+        SleepSomeTime.delay(3000);
+        $x(DELETE_MODAL_BUTTON).click();
     }
 
     @Step("Getting last name of Project from List")
