@@ -1,9 +1,9 @@
 package adapters;
 
-import dto.Project;
 import dto.Suite;
+import static adapters.BaseAdapter.*;
 
-import static adapters.BaseAdapter.BASE_API;
+
 import static io.restassured.RestAssured.requestSpecification;
 
 public class SuiteAdapter {
@@ -13,7 +13,7 @@ public class SuiteAdapter {
         requestSpecification.
                 body(suite).
         when().
-                post(BASE_API + POSTFIX + code).
+                post(BASE_API_URL + POSTFIX + code).
         then().
                 log().all().
                 statusCode(200);
@@ -22,7 +22,7 @@ public class SuiteAdapter {
     public static void delete(String code, Integer id) {
         requestSpecification.
         when().
-                delete(BASE_API + POSTFIX + code + "/" + id).
+                delete(BASE_API_URL + POSTFIX + code + "/" + id).
         then().
                 log().all().
                 statusCode(200);

@@ -9,6 +9,7 @@ import utils.SleepSomeTime;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
+import static pages.ProjectSettingsPage.DELETE_MODAL_BUTTON_XPATH;
 
 @Log4j2
 public class RepositoryPage extends BasePage {
@@ -60,7 +61,7 @@ public class RepositoryPage extends BasePage {
         $x(String.format(DELETE_SUITE_BUTTON, title)).click();
         $x(DELETE_BUTTON_SUITE_MODAL).click();
         SleepSomeTime.delay(3000);
-        $x(DELETE_MODAL_BUTTON).click();
+        $x(DELETE_MODAL_BUTTON_XPATH).click();
     }
 
 }

@@ -13,7 +13,7 @@ public class ProjectAdapter {
         requestSpecification.
                 body(project).
         when().
-                post(BASE_API + POSTFIX).
+                post(BASE_API_URL + POSTFIX).
         then().
                 log().body().
                 statusCode(200);
@@ -22,7 +22,7 @@ public class ProjectAdapter {
     public static void delete(String code) {
         requestSpecification.
         when().
-                delete(BASE_API + POSTFIX + code).
+                delete(BASE_API_URL + POSTFIX + code).
         then().
                 log().all().
                 statusCode(200);
@@ -31,7 +31,7 @@ public class ProjectAdapter {
     public static void get(String code, String title) {
         requestSpecification.
         when().
-                get(BASE_API + POSTFIX + code).
+                get(BASE_API_URL + POSTFIX + code).
         then().
                 log().body().
                 statusCode(200).

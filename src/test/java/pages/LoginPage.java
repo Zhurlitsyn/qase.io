@@ -13,7 +13,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class LoginPage extends BasePage {
     public static final String USERNAME_INPUT = "email";
     public static final String PASSWORD_INPUT = "password";
-    public static final String LOGIN_BUTTON = "button[type='submit']";
+    public static final String LOGIN_BUTTON_CSS = "button[type='submit']";
     public static final String REMEMBER_CHECKBOX = "remember";
 
     @Step("Opening Login Page")
@@ -24,19 +24,19 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage isPageOpened() {
-        $(LOGIN_BUTTON).shouldBe(Condition.visible);
+        $(LOGIN_BUTTON_CSS).shouldBe(Condition.visible);
         return this;
     }
 
     @Step("Login user")
     public ProjectListPage login() {
         log.info("Login user by positive data");
-        String logUser = System.getProperty("username", PropertyReader.getProperty("USERNAME"));
-        String logPswrd = System.getProperty("password", PropertyReader.getProperty("PASSWORD"));
+        String logUser = System.getProperty("username", PropertyReader.getProperty("username"));
+        String logPswrd = System.getProperty("password", PropertyReader.getProperty("password"));
         $(byName(USERNAME_INPUT)).setValue(logUser);
         $(byName(PASSWORD_INPUT)).setValue(logPswrd);
         $(byName(REMEMBER_CHECKBOX)).click();
-        $(LOGIN_BUTTON).click();
+        $(LOGIN_BUTTON_CSS).click();
         return new ProjectListPage();
     }
 }

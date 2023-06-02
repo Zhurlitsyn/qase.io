@@ -1,7 +1,5 @@
 package tests;
 
-import adapters.ProjectAdapter;
-import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import dto.Project;
 import dto.ProjectFactory;
@@ -12,14 +10,13 @@ import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.$$x;
-import static pages.ProjectListPage.PROJECTS_CODES;
 
 @Log4j2
-public class SuiteTests extends BaseTest {
+public class SuiteTest extends BaseTest {
     @Test(description = "Create project by UI")
     public void createSuite() {
-        Project project = new ProjectFactory().getRandomApi();
+        Project project = new ProjectFactory().getRandom();
+        project.setAccess(ProjectFactory.getRandomAccessApi());
         Suite suite = new SuiteFactory().getRandom();
         projectAdapter.create(project);
         log.info("Login user");
@@ -43,7 +40,8 @@ public class SuiteTests extends BaseTest {
 
     @Test(description = "Update suite by UI")
     public void updateSuite() {
-        Project project = new ProjectFactory().getRandomApi();
+        Project project = new ProjectFactory().getRandom();
+        project.setAccess(ProjectFactory.getRandomAccessApi());
         Suite suite = new SuiteFactory().getRandom();
         Suite suiteNew = new SuiteFactory().getRandom();
         log.info("Creating new project and suite");

@@ -20,11 +20,12 @@ import static pages.ProjectPage.*;
 @Log4j2
 public class ProjectSettingsPage extends BasePage {
 
-    public static final String DELETE_BUTTON = "//*[text()=' Delete project']";
-    public static final String UPDATE_BUTTON = "[type='submit']";
+    public static final String DELETE_BUTTON_XPATH = "//*[text()=' Delete project']";
+    public static final String UPDATE_BUTTON_CSS = "[type='submit']";
     public static final By TITLE_SET = By.tagName("h1");
     public static final String PROJECT_URI = "/project/%s/settings/general";
-    public static final String CREATE_NEW_SUITE_BUTTON = "Create new suite";
+    public static final String DELETE_MODAL_BUTTON_XPATH = "//button/span[text()='Delete project']";
+
 
 
 
@@ -43,8 +44,8 @@ public class ProjectSettingsPage extends BasePage {
 
     @Step("Click Delete Project Button")
     public ProjectListPage deleteButtonClick() {
-        $x(DELETE_BUTTON).click();
-        $x(DELETE_MODAL_BUTTON).click();
+        $x(DELETE_BUTTON_XPATH).click();
+        $x(DELETE_MODAL_BUTTON_XPATH).click();
         return new ProjectListPage();
     }
 
@@ -62,7 +63,6 @@ public class ProjectSettingsPage extends BasePage {
         } else {
             project.setAccess("private");
             radioAccessClick(project);
-
         }
         return this;
     }
@@ -74,15 +74,15 @@ public class ProjectSettingsPage extends BasePage {
     }
     @Step("Click Update Project Button")
     public ProjectSettingsPage updateButtonClick() {
-        $(UPDATE_BUTTON).click();
+        $(UPDATE_BUTTON_CSS).click();
         return this;
     }
 
     @Step("Check project data")
-    public ProjectSettingsPage checkProjectDataUI (Project project) {
-        $("#project-name").shouldBe(value(project.getTitle()));
-        $("#project-code").shouldHave(value(project.getCode()));
-        $("#description-area").shouldHave(value(project.getDescription()));
+    public ProjectSettingsPage checkProjectData (Project project) {
+        $(PROJECT_NAME_CSS).shouldBe(value(project.getTitle()));
+        $(PROJECT_CODE_CSS).shouldHave(value(project.getCode()));
+        $(DESCRIPTION_CSS).shouldHave(value(project.getDescription()));
         $x("//input[@value='" + project.getAccess() + "']").shouldBe(checked);
         return this;
     }

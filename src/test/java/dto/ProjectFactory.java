@@ -11,30 +11,28 @@ public class ProjectFactory {
     public static Random random = new Random();
     public static String choice;
 
-    static String getRandomStringData(String[] list) {
+    private static String getRandomFromArray(String[] list) {
         choice = "";
         return choice = list[random.nextInt(list.length)];
     }
 
-    public Project getRandomUI() {
+    public Project getRandom() {
         Project project = new Project();
         Faker faker = new Faker();
 
         project.setTitle(faker.company().buzzword());
         project.setCode(faker.code().gtin8());
         project.setDescription(faker.lorem().characters(5, 255));
-        project.setAccess(getRandomStringData(listAccessUI));
+        project.setAccess(getRandomFromArray(listAccessUI));
         return project;
     }
+    public static String getRandomAccessUI() {
+        String access = getRandomFromArray(listAccessUI);
+        return access;
+    }
 
-    public Project getRandomApi() {
-        Project project = new Project();
-        Faker faker = new Faker();
-
-        project.setTitle(faker.company().buzzword());
-        project.setCode(faker.code().gtin8());
-        project.setDescription(faker.lorem().characters(5, 255));
-        project.setAccess(getRandomStringData(listAccessApi));
-        return project;
+    public static String getRandomAccessApi() {
+        String access = getRandomFromArray(listAccessApi);
+        return access;
     }
 }
