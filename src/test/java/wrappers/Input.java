@@ -13,14 +13,16 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 @Log4j2
 public class Input {
     String label;
-    String baseLocator = "//*[text()='%s']/../..//input";
+    String BASE_LOCATOR_XPATH = "//*[text()='%s']/ancestor::div[contains(@class, 'form-group')]//p";
 
     public Input(String label) {
         this.label = label;
     }
     public void write(String text) {
         log.info("Writing {} into {}", text, label);
-        $x((String.format(baseLocator, label))).setValue(text);
+        $x((String.format(BASE_LOCATOR_XPATH, label))).click();
+        $x((String.format(BASE_LOCATOR_XPATH, label))).clear();
+        $x((String.format(BASE_LOCATOR_XPATH, label))).setValue(text);
         SleepSomeTime.delay(300);
     }
 

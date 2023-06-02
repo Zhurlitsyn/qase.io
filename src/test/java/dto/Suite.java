@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 
-public class Project {
+public class Suite {
     String title;
-    String code;
     String description;
-    String access;
+    String precondition;
+    int parent_id;
 }

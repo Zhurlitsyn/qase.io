@@ -1,15 +1,13 @@
 package tests;
 
+import adapters.BaseAdapter;
+import adapters.ProjectAdapter;
+import adapters.SuiteAdapter;
 import com.codeborne.selenide.Configuration;
 import lombok.extern.log4j.Log4j2;
 import org.testng.ITestContext;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
-import pages.LoginPage;
-import pages.NewProjectPage;
-import pages.ProjectListPage;
-import pages.ProjectSettingsPage;
+import org.testng.annotations.*;
+import pages.*;
 import tests.base.TestListener;
 import utils.PropertyReader;
 
@@ -21,20 +19,37 @@ public class BaseTest {
     LoginPage loginPage;
     ProjectListPage projectListPage;
     ProjectSettingsPage projectSettingsPage;
-    NewProjectPage newProjectPage;
+    ProjectPage projectPage;
+    BaseAdapter baseAdapter;
+    ProjectAdapter projectAdapter;
+    SuitePage suitePage;
+    SuiteAdapter suiteAdapter;
+    CasePage casePage;
+
+    @Parameters({"browser"})
     @BeforeMethod
-    public void setUp(ITestContext testContext) {
+    public void setUp(@Optional("chrome") String browser, ITestContext testContext) {
         Configuration.timeout = 4000;
-        Configuration.browser = "chrome";
         Configuration.headless = false;
         Configuration.clickViaJs = false;
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = PropertyReader.getProperty("BASE_URL");
+        if (browser.equals("chrome")) {
+            Configuration.browser = "chrome";
+        } else if (browser.equals("firefox")) {
+            Configuration.browser = "firefox";
+        }
 
         loginPage = new LoginPage();
         projectListPage = new ProjectListPage();
-        newProjectPage = new NewProjectPage();
+        projectPage = new ProjectPage();
         projectSettingsPage = new ProjectSettingsPage();
+        baseAdapter = new BaseAdapter();
+        projectAdapter = new ProjectAdapter();
+        suitePage = new SuitePage();
+        suiteAdapter = new SuiteAdapter();
+        casePage = new CasePage();
+
     }
 
     @AfterMethod(alwaysRun = true)

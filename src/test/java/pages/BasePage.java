@@ -1,12 +1,15 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
-import utils.PropertyReader;
 
 
 class BasePage {
+    public static final String CREATE_BUTTON_CSS = "button[type='submit']";
+
+
     public void waitForPageLoaded() {
         new ExpectedCondition<Boolean>() {
             public Boolean apply(WebDriver driver) {

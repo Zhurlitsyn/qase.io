@@ -1,23 +1,41 @@
 package adapters;
 
 import dto.Project;
-import utils.PropertyReader;
 
-import static io.restassured.RestAssured.given;
+import static adapters.BaseAdapter.*;
+import static io.restassured.RestAssured.requestSpecification;
+import static org.hamcrest.Matchers.equalTo;
 
 public class ProjectAdapter {
+    private static final String POSTFIX = "/v1/project/";
 
     public void create(Project project) {
-        given().
+        requestSpecification.
                 body(project).
-                header("content-type", "application/json").
-                header("Token", PropertyReader.getProperty("TOKEN")).
-                log().all().
         when().
-                post("https://api.qase.io/v1/project").
+                post(BASE_API_URL + POSTFIX).
+        then().
+                log().body().
+                statusCode(200);
+    }
+
+    public static void delete(String code) {
+        requestSpecification.
+        when().
+                delete(BASE_API_URL + POSTFIX + code).
         then().
                 log().all().
                 statusCode(200);
-
     }
+
+    public static void get(String code, String title) {
+        requestSpecification.
+        when().
+                get(BASE_API_URL + POSTFIX + code).
+        then().
+                log().body().
+                statusCode(200).
+                body("result.title", equalTo(title));
+    }
+
 }
