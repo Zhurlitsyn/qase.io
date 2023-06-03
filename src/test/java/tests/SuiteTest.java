@@ -30,7 +30,7 @@ public class SuiteTest extends BaseTest {
                 .openPage(project.getCode())
                 .createNewSuiteButtonClick()
                 .fillIn(suite)
-                .createButtonClick();
+                .createSuiteButtonClick();
 
         log.info("Checking suite");
         $(byText(suite.getTitle())).shouldBe(Condition.visible);
@@ -55,10 +55,8 @@ public class SuiteTest extends BaseTest {
                 .isPageOpened();
         suitePage
                 .openPage(project.getCode())
-                .createNewSuiteButtonClick()
+                .createSuiteButtonClick()
                 .fillIn(suite);
-
-
     }
 
 }

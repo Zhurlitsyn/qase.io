@@ -47,7 +47,7 @@ public class ProjectTest extends BaseTest {
         project.setAccess(ProjectFactory.getRandomAccessApi());
 
         Project projectNew = new ProjectFactory().getRandom();
-        projectNew.setAccess(ProjectFactory.getRandomAccessUI());
+        projectNew.setAccess(ProjectFactory.getRandomAccessApi());
 
         log.info("Creating new project by API");
         new ProjectAdapter().create(project);
@@ -71,7 +71,7 @@ public class ProjectTest extends BaseTest {
     @Test(description = "Delete project from Setting Page")
     public void deleteProjectOnSettingsPage() {
         Project project = new ProjectFactory().getRandom();
-        project.setAccess(ProjectFactory.getRandomAccessUI());
+        project.setAccess(ProjectFactory.getRandomAccessApi());
         projectAdapter.create(project);
         int start = 0;
         log.info("Login user");
@@ -94,7 +94,7 @@ public class ProjectTest extends BaseTest {
     @Test(description = "Delete project from Project list page")
     public void deleteProjectFromList() {
         Project project = new ProjectFactory().getRandom();
-        project.setAccess(ProjectFactory.getRandomAccessUI());
+        project.setAccess(ProjectFactory.getRandomAccessApi());
         projectAdapter.create(project);
         int start = 0;
         log.info("Login user");

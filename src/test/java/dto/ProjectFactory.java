@@ -23,7 +23,6 @@ public class ProjectFactory {
         project.setTitle(faker.company().buzzword());
         project.setCode(faker.code().gtin8());
         project.setDescription(faker.lorem().characters(5, 255));
-        project.setAccess(getRandomFromArray(listAccessUI));
         return project;
     }
     public static String getRandomAccessUI() {

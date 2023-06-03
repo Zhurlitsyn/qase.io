@@ -33,7 +33,7 @@ public class BaseTest {
         Configuration.headless = false;
         Configuration.clickViaJs = false;
         Configuration.browserSize = "1920x1080";
-        Configuration.baseUrl = PropertyReader.getProperty("BASE_URL");
+        Configuration.baseUrl = PropertyReader.getProperty("base.url");
         if (browser.equals("chrome")) {
             Configuration.browser = "chrome";
         } else if (browser.equals("firefox")) {

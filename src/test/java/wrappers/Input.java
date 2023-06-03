@@ -14,15 +14,24 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 public class Input {
     String label;
     String BASE_LOCATOR_XPATH = "//*[text()='%s']/ancestor::div[contains(@class, 'form-group')]//p";
+    String BASE_LOCATOR_SUITE_XPATH = "//*[text()='%s']/../..//p";
 
     public Input(String label) {
         this.label = label;
     }
-    public void write(String text) {
+    public void writeCase(String text) {
         log.info("Writing {} into {}", text, label);
         $x((String.format(BASE_LOCATOR_XPATH, label))).click();
         $x((String.format(BASE_LOCATOR_XPATH, label))).clear();
         $x((String.format(BASE_LOCATOR_XPATH, label))).setValue(text);
+        SleepSomeTime.delay(300);
+    }
+
+    public void writeSuite(String text) {
+        log.info("Writing {} into {}", text, label);
+        $x((String.format(BASE_LOCATOR_SUITE_XPATH, label))).click();
+        $x((String.format(BASE_LOCATOR_SUITE_XPATH, label))).clear();
+        $x((String.format(BASE_LOCATOR_SUITE_XPATH, label))).setValue(text);
         SleepSomeTime.delay(300);
     }
 

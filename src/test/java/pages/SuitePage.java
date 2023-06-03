@@ -19,6 +19,7 @@ public class SuitePage extends BasePage {
     public static final String SUITE_INPUT_XPATH = "//*[text()='%s']/../..//p";
     public static final String SUITE_URI = "/project/%s";
     public static final String CREATE_NEW_SUITE_BUTTON = "Create new suite";
+    public static final String CREATE_SUITE_BUTTON_CSS = "#create-suite-button";
 
     public SuitePage isPageOpened() {
         $(CREATE_BUTTON_CSS).shouldBe(Condition.visible);
@@ -43,8 +44,8 @@ public class SuitePage extends BasePage {
         log.info("Filling new Suite data {}", suite);
         $(SUITE_TITLE_CSS).clear();
         $(SUITE_TITLE_CSS).setValue(suite.getTitle());
-        new Input("Description").write(suite.getDescription());
-        new Input("Preconditions").write(suite.getPrecondition());
+        new Input("Description").writeSuite(suite.getDescription());
+        new Input("Preconditions").writeSuite(suite.getPrecondition());
         /*$x(String.format(SUITE_INPUT_XPATH, "Description")).click();
         $x(String.format(SUITE_INPUT_XPATH, "Description")).clear();
         $x(String.format(SUITE_INPUT_XPATH, "Description")).setValue(suite.getDescription());
@@ -63,7 +64,7 @@ public class SuitePage extends BasePage {
     }
 
     @Step("Click Create Button")
-    public SuitePage createButtonClick() {
+    public SuitePage createSuiteButtonClick() {
         $(CREATE_BUTTON_CSS).click();
         return this;
     }
