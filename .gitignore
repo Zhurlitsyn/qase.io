@@ -5,6 +5,8 @@
 *.iml
 
 #properties
+config.properties
+
 *.properties
 
 # out folder

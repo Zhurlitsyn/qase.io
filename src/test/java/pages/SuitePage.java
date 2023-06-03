@@ -46,7 +46,9 @@ public class SuitePage extends BasePage {
         log.info("Filling new Suite data {}", suite);
         $(SUITE_TITLE_CSS).clear();
         $(SUITE_TITLE_CSS).setValue(suite.getTitle());
+        log.info("Filling Description field {}", suite.getDescription());
         new Input("Description").writeSuite(suite.getDescription());
+        log.info("Filling Preconditions field {}", suite.getPrecondition());
         new Input("Preconditions").writeSuite(suite.getPrecondition());
         /*$x(String.format(SUITE_INPUT_XPATH, "Description")).click();
         $x(String.format(SUITE_INPUT_XPATH, "Description")).clear();
@@ -67,7 +69,7 @@ public class SuitePage extends BasePage {
 
     @Step("Click Create Button")
     public SuitePage createSuiteButtonClick() {
-        $(CREATE_BUTTON_CSS).click();
+        $(CREATE_SUITE_BUTTON_CSS).click();
         return this;
     }
 }
