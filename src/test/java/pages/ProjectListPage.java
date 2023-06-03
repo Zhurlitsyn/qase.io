@@ -3,6 +3,7 @@ package pages;
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import utils.SleepSomeTime;
 
@@ -14,7 +15,7 @@ import static pages.ProjectSettingsPage.DELETE_MODAL_BUTTON_XPATH;
 @Log4j2
 public class ProjectListPage extends BasePage {
 
-    public static final String CREATE_BUTTON = "#createButton";
+    public static final By CREATE_BUTTON_CSS = By.id("createButton");
     public static final String PROJECTS_CODES =
             "//*[@class='project-row']//a[@class='defect-title']";
     public static final String DROPDOWN_PROJECT_BUTTON =
@@ -26,8 +27,8 @@ public class ProjectListPage extends BasePage {
 
     public ProjectListPage isPageOpened() {
         log.info("Waiting visibility of 'Create new project button'");
-        $(CREATE_BUTTON).shouldBe(Condition.visible);
-        SleepSomeTime.delay(10000);
+        waitForPageLoaded();
+        $(CREATE_BUTTON_CSS).shouldBe(Condition.visible);
         return this;
     }
 
@@ -41,7 +42,7 @@ public class ProjectListPage extends BasePage {
 
     @Step("Click Create Button")
     public ProjectPage createButtonClick() {
-        $(CREATE_BUTTON).click();
+        $(CREATE_BUTTON_CSS).click();
         return new ProjectPage();
     }
 
