@@ -55,7 +55,7 @@ public class ProjectListPage extends BasePage {
         log.info("Deleting project by 'Delete' modal button");
         $x(String.format(DROPDOWN_PROJECT_BUTTON, name)).click();
         $x(String.format(DROPDOWN_DELETE_BUTTON, name)).click();
-        SleepSomeTime.delay(3000);
+        SleepSomeTime.delay(3000); //TODO checking
         $x(DELETE_MODAL_BUTTON_XPATH).click();
     }
 
