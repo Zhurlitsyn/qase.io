@@ -10,7 +10,7 @@ public class BaseAdapter {
     public BaseAdapter() {
         requestSpecification = given().
                 header("content-type", "application/json").
-                header("Token", PropertyReader.getProperty("api.token")).
+                header("Token", PropertyReader.getProperty("token")).
                 log().all();
     }
 }
