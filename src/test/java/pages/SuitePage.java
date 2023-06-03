@@ -29,10 +29,10 @@ public class SuitePage extends BasePage {
     }
 
     @Step("Opening Project page")
-    public SuitePage openPage(String code) {
+    public RepositoryPage openPage(String code) {
         log.info("Opening Project page");
         open(String.format(SUITE_URI, code));
-        return this;
+        return new RepositoryPage();
     }
 
     @Step("Click 'Create new suite' button")

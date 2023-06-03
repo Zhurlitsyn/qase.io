@@ -28,7 +28,7 @@ public class SuiteTest extends BaseTest {
         log.info("Opening project page and create suite");
         suitePage
                 .openPage(project.getCode())
-                .createNewSuiteButtonClick()
+                .createSuiteButtonClick()
                 .fillIn(suite)
                 .createButtonModalClick();
         log.info("Checking suite title on repository page");
@@ -54,7 +54,7 @@ public class SuiteTest extends BaseTest {
                 .isPageOpened();
         suitePage
                 .openPage(project.getCode())
-                .createSuiteButtonClick()
+                .editButtonClickRepository(suite.getTitle())
                 .fillIn(suiteNew)
                 .createButtonModalClick()
                 .checkSuiteData(suiteNew);
