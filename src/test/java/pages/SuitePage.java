@@ -72,5 +72,11 @@ public class SuitePage extends BasePage {
         $(CREATE_SUITE_BUTTON_CSS).click();
         return this;
     }
+
+    @Step("Click Create Button on modal window")
+    public SuitePage createButtonModalClick() {
+        $(CREATE_BUTTON_CSS).click();
+        return this;
+    }
 }
 
