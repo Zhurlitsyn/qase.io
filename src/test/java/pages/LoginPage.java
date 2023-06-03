@@ -33,8 +33,9 @@ public class LoginPage extends BasePage {
         log.info("Login user by positive data");
         String logUser = System.getProperty("username", PropertyReader.getProperty("username"));
         String logPswrd = System.getProperty("password", PropertyReader.getProperty("password"));
-        log.info("Setting values into fields");
+        log.info("Setting values into fields {}", logUser);
         $(byName(USERNAME_INPUT)).setValue(logUser);
+        log.info("Setting values into fields {}", logPswrd);
         $(byName(PASSWORD_INPUT)).setValue(logPswrd);
         $(byName(REMEMBER_CHECKBOX)).click();
         log.info("Login button click");
