@@ -19,6 +19,8 @@ public class ProjectPage extends BasePage {
     public static final String PRIVATE_CHECK_CSS = "private";
     public static final String ADD_ALL_CHECK_CSS = "Add all members to this project";
     public static final String DONT_ALL_CHECK_CSS = "Don't add members";
+    public static final String CREATE_BUTTON_CSS = "button[type='submit']";
+
 
 
     public ProjectPage isPageOpened() {

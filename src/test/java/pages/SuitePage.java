@@ -20,6 +20,8 @@ public class SuitePage extends BasePage {
     public static final String SUITE_URI = "/project/%s";
     public static final String CREATE_NEW_SUITE_BUTTON = "Create new suite";
     public static final String CREATE_SUITE_BUTTON_CSS = "#create-suite-button";
+    public static final String CREATE_BUTTON_CSS = "button[type='submit']";
+
 
     public SuitePage isPageOpened() {
         $(CREATE_BUTTON_CSS).shouldBe(Condition.visible);
