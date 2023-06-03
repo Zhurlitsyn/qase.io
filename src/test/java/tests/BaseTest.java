@@ -39,6 +39,7 @@ public class BaseTest {
         } else if (browser.equals("firefox")) {
             Configuration.browser = "firefox";
         }
+        testContext.setAttribute("browser", browser);
 
         loginPage = new LoginPage();
         projectListPage = new ProjectListPage();
