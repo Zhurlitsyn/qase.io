@@ -29,7 +29,7 @@ jobs:
         cache: maven
     - name: Build with Maven
       env:
-        USER: ${{ secrets.username }}
+        USERNAME: ${{ secrets.username }}
         PASSWORD: ${{ secrets.password }}
         TOKEN: ${{ secrets.token }}
-      run: mvn clean test -Dtest=LoginTest
+      run: mvn clean test -Dtest=LoginTest -Duser=$USER -Dpassword=$PASSWORD -Dtoken=$TOKEN
