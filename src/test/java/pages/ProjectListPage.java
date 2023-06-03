@@ -25,8 +25,9 @@ public class ProjectListPage extends BasePage {
 
 
     public ProjectListPage isPageOpened() {
+        log.info("Waiting visibility of 'Create new project button'");
         $(CREATE_BUTTON).shouldBe(Condition.visible);
-        //SleepSomeTime.delay(5000);
+        SleepSomeTime.delay(10000);
         return this;
     }
 
