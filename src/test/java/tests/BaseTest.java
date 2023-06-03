@@ -30,7 +30,7 @@ public class BaseTest {
     @BeforeMethod
     public void setUp(@Optional("chrome") String browser, ITestContext testContext) {
         Configuration.timeout = 4000;
-        Configuration.headless = false;
+        Configuration.headless = true;
         Configuration.clickViaJs = false;
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = PropertyReader.getProperty("base.url");
