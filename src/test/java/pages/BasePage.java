@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 
 
 class BasePage {
-    public static final String CREATE_BUTTON_CSS = "button[type='submit']";
+    //public static final String CREATE_BUTTON_CSS = "button[type='submit']";
 
 
     public void waitForPageLoaded() {
