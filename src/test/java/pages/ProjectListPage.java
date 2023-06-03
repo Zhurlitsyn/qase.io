@@ -9,6 +9,7 @@ import utils.SleepSomeTime;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.*;
+import static pages.ProjectSettingsPage.DELETE_MODAL_BUTTON_XPATH;
 
 @Log4j2
 public class ProjectListPage extends BasePage {
@@ -54,8 +55,8 @@ public class ProjectListPage extends BasePage {
         log.info("Deleting project by 'Delete' modal button");
         $x(String.format(DROPDOWN_PROJECT_BUTTON, name)).click();
         $x(String.format(DROPDOWN_DELETE_BUTTON, name)).click();
-        SleepSomeTime.delay(3000);
-        $x(DELETE_MODAL_BUTTON).click();
+        SleepSomeTime.delay(3000); //TODO checking
+        $x(DELETE_MODAL_BUTTON_XPATH).click();
     }
 
     @Step("Getting last name of Project from List")
