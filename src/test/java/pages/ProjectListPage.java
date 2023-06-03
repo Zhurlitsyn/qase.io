@@ -16,6 +16,7 @@ import static pages.ProjectSettingsPage.DELETE_MODAL_BUTTON_XPATH;
 public class ProjectListPage extends BasePage {
 
     public static final By CREATE_BUTTON_CSS = By.id("createButton");
+    public static final String PROJECTS_H1_CSS = "//span[text()='Create new project']";
     public static final String PROJECTS_CODES =
             "//*[@class='project-row']//a[@class='defect-title']";
     public static final String DROPDOWN_PROJECT_BUTTON =
@@ -28,7 +29,7 @@ public class ProjectListPage extends BasePage {
     public ProjectListPage isPageOpened() {
         log.info("Waiting visibility of 'Create new project button'");
         waitForPageLoaded();
-        $(CREATE_BUTTON_CSS).shouldBe(Condition.visible);
+        $x(PROJECTS_H1_CSS).shouldBe(Condition.visible);
         return this;
     }
 
