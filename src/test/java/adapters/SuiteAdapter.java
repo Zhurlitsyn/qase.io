@@ -1,6 +1,8 @@
 package adapters;
 
+import com.google.gson.Gson;
 import dto.Suite;
+
 import static adapters.BaseAdapter.*;
 
 
@@ -15,7 +17,7 @@ public class SuiteAdapter {
         when().
                 post(BASE_API_URL + POSTFIX + code).
         then().
-                log().all().
+                log().body().
                 statusCode(200);
     }
 
@@ -27,5 +29,4 @@ public class SuiteAdapter {
                 log().all().
                 statusCode(200);
     }
-
 }
