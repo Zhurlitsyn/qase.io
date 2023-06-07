@@ -22,8 +22,8 @@ public class Retry implements IRetryAnalyzer {
             if (this.attempt < 3) {
                 ++this.attempt;
                 iTestResult.setStatus(2);
-                log.warn(iTestResult.getName() + "Test is failure.");
-                log.info("Attempt#" + this.attempt);
+                log.warn("Test {} failed once again.", iTestResult.getName());
+                log.info("Attempt# " + this.attempt);
                 return true;
             }
 

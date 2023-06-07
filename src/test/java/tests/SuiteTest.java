@@ -19,6 +19,7 @@ public class SuiteTest extends BaseTest {
         project.setAccess(ProjectFactory.getRandomAccessApi());
         Suite suite = new SuiteFactory().getRandom();
         projectAdapter.create(project);
+        suiteAdapter.create(suite, project.getCode());
         log.info("Login user");
         loginPage
                 .openPage()
@@ -29,8 +30,9 @@ public class SuiteTest extends BaseTest {
         suitePage
                 .openPage(project.getCode())
                 .createSuiteButtonClick()
-                .fillIn(suite)
-                .createButtonModalClick();
+                .isPageOpened()
+                .fillInEdit(suite)
+                .saveButtonClick();
         log.info("Checking suite title on repository page");
         $(byText(suite.getTitle())).shouldBe(Condition.visible);
         projectListPage.openPage();
@@ -59,5 +61,4 @@ public class SuiteTest extends BaseTest {
                 .createButtonModalClick()
                 .checkSuiteData(suiteNew);
     }
-
 }

@@ -20,8 +20,8 @@ public class RepositoryPage extends BasePage {
     public static final String DELETE_SUITE_BUTTON = "//h3/span[text()='%s']/..//i[contains(@class, 'fa-trash')]";
     public static final String CREATE_CASE_BUTTON = "#create-case-button";
     public static final String DELETE_BUTTON_SUITE_MODAL = "//button[@type='submit']";
-
-
+    public static final String OPEN_PROJECT_BY_CODE_XPATH = "//a[@href='/project/%s']";
+    public static final String OPEN_CASE_BY_CODE_XPATH = "//a[text()='%s-1']";
 
     public RepositoryPage isPageOpened(String code) {
         $x(String.format(CODE_REPOSITORY, code)).shouldBe(Condition.visible);
@@ -32,7 +32,8 @@ public class RepositoryPage extends BasePage {
     @Step("Waits opening Project page")
     public RepositoryPage openPage(String code) {
         log.info("Wait opening Project page");
-        open("/projects/" + code);
+        $x(String.format(OPEN_PROJECT_BY_CODE_XPATH, code)).click();
+        //open("/projects/" + code);
         waitForPageLoaded();
         return this;
     }
@@ -46,6 +47,12 @@ public class RepositoryPage extends BasePage {
     @Step("Click Create Case Button")
     public CasePage createCaseButtonClick() {
         $(CREATE_CASE_BUTTON).click();
+        return new CasePage();
+    }
+
+    @Step("Clicking by case")
+    public CasePage caseButtonClick(String code) {
+        $x(String.format(OPEN_CASE_BY_CODE_XPATH, code)).click();
         return new CasePage();
     }
 

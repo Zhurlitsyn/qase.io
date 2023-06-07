@@ -28,9 +28,9 @@ public class SuitePage extends BasePage {
         return this;
     }
 
-    @Step("Opening Project page")
+    @Step("Opening Project repository page")
     public RepositoryPage openPage(String code) {
-        log.info("Opening Project page");
+        log.info("Opening Project repository page");
         open(String.format(SUITE_URI, code));
         return new RepositoryPage();
     }
@@ -41,21 +41,27 @@ public class SuitePage extends BasePage {
         return this;
     }
 
-    @Step("Filling new Project data with random values")
+    @Step("Filling new Suite data with random values")
     public SuitePage fillIn(Suite suite) {
         log.info("Filling new Suite data {}", suite);
         $(SUITE_TITLE_CSS).clear();
         $(SUITE_TITLE_CSS).setValue(suite.getTitle());
         log.info("Filling Description field {}", suite.getDescription());
-        new Input("Description").writeSuite(suite.getDescription());
+        new Input("Description").write(suite.getDescription());
         log.info("Filling Preconditions field {}", suite.getPrecondition());
-        new Input("Preconditions").writeSuite(suite.getPrecondition());
-        /*$x(String.format(SUITE_INPUT_XPATH, "Description")).click();
-        $x(String.format(SUITE_INPUT_XPATH, "Description")).clear();
-        $x(String.format(SUITE_INPUT_XPATH, "Description")).setValue(suite.getDescription());
-        $x(String.format(SUITE_INPUT_XPATH, "Preconditions")).click();
-        $x(String.format(SUITE_INPUT_XPATH, "Preconditions")).clear();
-        $x(String.format(SUITE_INPUT_XPATH, "Preconditions")).setValue(suite.getPrecondition());*/
+        new Input("Preconditions").write(suite.getPrecondition());
+        return this;
+    }
+
+    @Step("Filling new Project data with random values")
+    public SuitePage fillInEdit(Suite suite) {
+        log.info("Filling new Suite data {}", suite);
+        $(SUITE_TITLE_CSS).clear();
+        $(SUITE_TITLE_CSS).setValue(suite.getTitle());
+        log.info("Filling Description field {}", suite.getDescription());
+        new Input("Description").edit(suite.getDescription());
+        log.info("Filling Preconditions field {}", suite.getPrecondition());
+        new Input("Preconditions").edit(suite.getPrecondition());
         return this;
     }
 
@@ -70,6 +76,12 @@ public class SuitePage extends BasePage {
     @Step("Click Create Button")
     public SuitePage createSuiteButtonClick() {
         $(CREATE_SUITE_BUTTON_CSS).click();
+        return this;
+    }
+
+    @Step("Click Create Button")
+    public SuitePage saveButtonClick() {
+        $(CREATE_BUTTON_CSS).click();
         return this;
     }
 

@@ -1,19 +1,17 @@
 package adapters;
 
-import com.google.gson.Gson;
+import dto.CaseApi;
 import dto.Suite;
 
-import static adapters.BaseAdapter.*;
-
-
+import static adapters.BaseAdapter.BASE_API_URL;
 import static io.restassured.RestAssured.requestSpecification;
 
-public class SuiteAdapter {
-    private static final String POSTFIX = "/v1/suite/";
+public class CaseAdapter {
+    private static final String POSTFIX = "/v1/case/";
 
-    public void create(Suite suite, String code) {
+    public void create(CaseApi caseApi, String code) {
         requestSpecification.
-                body(suite).
+                body(caseApi).
         when().
                 post(BASE_API_URL + POSTFIX + code).
         then().
@@ -27,6 +25,16 @@ public class SuiteAdapter {
                 delete(BASE_API_URL + POSTFIX + code + "/" + id).
         then().
                 log().all().
+                statusCode(200);
+    }
+
+    public static void update(CaseApi caseApi, String code, int id) {
+        requestSpecification.
+                body(caseApi).
+        when().
+                patch(BASE_API_URL + POSTFIX + code + "/" + id).
+        then().
+                log().body().
                 statusCode(200);
     }
 }

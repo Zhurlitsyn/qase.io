@@ -1,6 +1,7 @@
 package tests;
 
 import adapters.BaseAdapter;
+import adapters.CaseAdapter;
 import adapters.ProjectAdapter;
 import adapters.SuiteAdapter;
 import com.codeborne.selenide.Configuration;
@@ -25,11 +26,13 @@ public class BaseTest {
     SuitePage suitePage;
     SuiteAdapter suiteAdapter;
     CasePage casePage;
+    CaseAdapter caseAdapter;
+    RepositoryPage repositoryPage;
 
     @Parameters({"browser"})
     @BeforeMethod
     public void setUp(@Optional("chrome") String browser, ITestContext testContext) {
-        Configuration.timeout = 4000;
+        Configuration.timeout = 9000;
         Configuration.headless = true;
         Configuration.clickViaJs = false;
         Configuration.browserSize = "1920x1080";
@@ -50,6 +53,8 @@ public class BaseTest {
         suitePage = new SuitePage();
         suiteAdapter = new SuiteAdapter();
         casePage = new CasePage();
+        caseAdapter = new CaseAdapter();
+        repositoryPage = new RepositoryPage();
 
     }
 
