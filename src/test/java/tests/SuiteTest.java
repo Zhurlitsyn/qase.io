@@ -7,6 +7,7 @@ import dto.Suite;
 import dto.SuiteFactory;
 import lombok.extern.log4j.Log4j2;
 import org.testng.annotations.Test;
+import pages.RepositoryPage;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
@@ -57,8 +58,11 @@ public class SuiteTest extends BaseTest {
         suitePage
                 .openPage(project.getCode())
                 .editButtonClickRepository(suite.getTitle())
-                .fillIn(suiteNew)
-                .createButtonModalClick()
+                .fillInEdit(suiteNew)
+                .saveButtonClick();
+        suitePage
+                .openPage(project.getCode())
+                .editButtonClickRepository(suiteNew.getTitle())
                 .checkSuiteData(suiteNew);
     }
 }

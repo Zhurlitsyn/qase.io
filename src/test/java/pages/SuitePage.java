@@ -7,8 +7,7 @@ import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import wrappers.Input;
 
-import static com.codeborne.selenide.Condition.checked;
-import static com.codeborne.selenide.Condition.value;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -16,7 +15,7 @@ import static com.codeborne.selenide.Selenide.*;
 public class SuitePage extends BasePage {
 
     public static final String SUITE_TITLE_CSS = "#title";
-    public static final String SUITE_INPUT_XPATH = "//*[text()='%s']/../..//p";
+    public static final String SUITE_INPUT_XPATH = "//*[text()='%s']/../..//p[@class]";
     public static final String SUITE_URI = "/project/%s";
     public static final String CREATE_NEW_SUITE_BUTTON = "Create new suite";
     public static final String CREATE_SUITE_BUTTON_CSS = "#create-suite-button";
@@ -48,8 +47,8 @@ public class SuitePage extends BasePage {
         $(SUITE_TITLE_CSS).setValue(suite.getTitle());
         log.info("Filling Description field {}", suite.getDescription());
         new Input("Description").write(suite.getDescription());
-        log.info("Filling Preconditions field {}", suite.getPrecondition());
-        new Input("Preconditions").write(suite.getPrecondition());
+        log.info("Filling Preconditions field {}", suite.getPreconditions());
+        new Input("Preconditions").write(suite.getPreconditions());
         return this;
     }
 
@@ -60,16 +59,16 @@ public class SuitePage extends BasePage {
         $(SUITE_TITLE_CSS).setValue(suite.getTitle());
         log.info("Filling Description field {}", suite.getDescription());
         new Input("Description").edit(suite.getDescription());
-        log.info("Filling Preconditions field {}", suite.getPrecondition());
-        new Input("Preconditions").edit(suite.getPrecondition());
+        log.info("Filling Preconditions field {}", suite.getPreconditions());
+        new Input("Preconditions").edit(suite.getPreconditions());
         return this;
     }
 
     @Step("Check project data")
     public SuitePage checkSuiteData(Suite suite) {
         $(SUITE_TITLE_CSS).shouldBe(value(suite.getTitle()));
-        $x(String.format(SUITE_INPUT_XPATH, "Description")).shouldHave(value(suite.getDescription()));
-        $x(String.format(SUITE_INPUT_XPATH, "Preconditions")).shouldHave(value(suite.getPrecondition()));
+        $x(String.format(SUITE_INPUT_XPATH, "Description")).shouldHave(text(suite.getDescription()));
+        $x(String.format(SUITE_INPUT_XPATH, "Preconditions")).shouldHave(text(suite.getPreconditions()));
         return this;
     }
 
@@ -80,9 +79,9 @@ public class SuitePage extends BasePage {
     }
 
     @Step("Click Create Button")
-    public SuitePage saveButtonClick() {
+    public RepositoryPage saveButtonClick() {
         $(CREATE_BUTTON_CSS).click();
-        return this;
+        return new RepositoryPage();
     }
 
     @Step("Click Create Button on modal window")

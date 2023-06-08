@@ -28,8 +28,9 @@ public class ProjectListPage extends BasePage {
 
     public ProjectListPage isPageOpened() {
         log.info("Waiting visibility of 'Create new project button'");
-        waitForPageLoaded();
         $x(PROJECTS_H1_CSS).shouldBe(Condition.visible);
+        waitForPageLoaded();
+        SleepSomeTime.delay(5000);
         return this;
     }
 

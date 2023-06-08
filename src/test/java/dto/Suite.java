@@ -13,6 +13,6 @@ import lombok.NoArgsConstructor;
 public class Suite {
     String title;
     String description;
-    String precondition;
+    String preconditions;
     int parent_id;
 }

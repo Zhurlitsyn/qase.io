@@ -1,9 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.ElementsCollection;
 import dto.CaseApi;
-import dto.CaseUI;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import wrappers.DropDown;
@@ -16,7 +14,6 @@ public class CasePage extends BasePage {
 
     public static final String CASE_URI = "/case/%s/create";
     public static final String EDIT_BUTTON_XPATH = "//span[text()=' Edit']";
-    public static final String CHECK_CASE_IN_LIST_XPATH = "//a[@href='/case/%s-1']";
     public static final String SAVE_BUTTON_CSS = "button[type='submit']";
     public static final String CASE_TITLE_CSS = "#title";
 

@@ -103,7 +103,7 @@ public class ProjectTest extends BaseTest {
                 .isPageOpened()
                 .login()
                 .isPageOpened();
-        start = projectListPage.getCountOfProjects();
+        start = projectListPage.getCountOfProjects() - 1;
 
         log.info("Opening Project list page & Deleting project");
         projectListPage

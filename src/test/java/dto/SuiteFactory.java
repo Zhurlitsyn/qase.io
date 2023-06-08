@@ -10,7 +10,7 @@ public class SuiteFactory {
 
         suite.setTitle(faker.hipster().word());
         suite.setDescription(faker.lorem().characters(5, 255));
-        suite.setPrecondition(faker.lorem().characters(5, 255));
+        suite.setPreconditions(faker.lorem().characters(5, 255));
         return suite;
     }
 

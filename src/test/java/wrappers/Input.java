@@ -49,7 +49,6 @@ public class Input {
         log.info("Writing new {} into {}", text, label);
         $x((String.format(BASE_LOCATOR_SUITE_XPATH + "[@class='']", label))).click();
         SleepSomeTime.delay(300);
-        $x((String.format(BASE_LOCATOR_SUITE_XPATH + "[@class='']", label))).clear();
         $x((String.format(BASE_LOCATOR_SUITE_XPATH + "[@class='']", label))).setValue(text);
         SleepSomeTime.delay(2000);
     }
