@@ -32,7 +32,7 @@ public class SuiteTest extends BaseTest {
                 .openPage(project.getCode())
                 .createSuiteButtonClick()
                 .isPageOpened()
-                .fillInEdit(suite)
+                .fillIn(suite)
                 .saveButtonClick();
         log.info("Checking suite title on repository page");
         $(byText(suite.getTitle())).shouldBe(Condition.visible);

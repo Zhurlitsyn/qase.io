@@ -80,7 +80,7 @@ public class ProjectTest extends BaseTest {
                 .isPageOpened()
                 .login()
                 .isPageOpened();
-        start = projectListPage.getCountOfProjects();
+        start = projectListPage.getCountOfProjects() - 1;
 
         log.info("Opening Settings page & Deleting project");
         projectSettingsPage

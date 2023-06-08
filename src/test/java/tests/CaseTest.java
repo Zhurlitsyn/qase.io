@@ -4,13 +4,14 @@ import com.codeborne.selenide.Condition;
 import dto.*;
 import lombok.extern.log4j.Log4j2;
 import org.testng.annotations.Test;
+import tests.base.Retry;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
 @Log4j2
 public class CaseTest extends BaseTest {
-    @Test(description = "Create project by UI")
+    @Test(description = "Create project by UI", retryAnalyzer = Retry.class)
     public void createCase() {
         Project project = new ProjectFactory().getRandom();
         project.setAccess(ProjectFactory.getRandomAccessApi());
