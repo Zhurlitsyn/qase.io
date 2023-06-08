@@ -9,9 +9,9 @@ name: Running tests
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "suite_case" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "suite_case" ]
 
 jobs:
   test:
