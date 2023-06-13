@@ -17,14 +17,14 @@ public class ProjectFactory {
     }
 
     public Project getRandom() {
-        Project project = new Project();
         Faker faker = new Faker();
-
-        project.setTitle(faker.company().buzzword());
-        project.setCode(faker.code().gtin8());
-        project.setDescription(faker.lorem().characters(5, 255));
-        return project;
+        return Project.builder()
+                .title(faker.company().buzzword())
+                .code(faker.code().gtin8())
+                .description(faker.lorem().characters(5, 255))
+                .build();
     }
+
     public static String getRandomAccessUI() {
         String access = getRandomFromArray(listAccessUI);
         return access;

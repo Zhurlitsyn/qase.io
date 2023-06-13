@@ -4,14 +4,13 @@ import com.github.javafaker.Faker;
 
 public class SuiteFactory {
 
-       public Suite getRandom() {
-        Suite suite = new Suite();
+    public Suite getRandom() {
         Faker faker = new Faker();
-
-        suite.setTitle(faker.hipster().word());
-        suite.setDescription(faker.lorem().characters(5, 255));
-        suite.setPreconditions(faker.lorem().characters(5, 255));
-        return suite;
+        return Suite.builder()
+                .title(faker.hipster().word())
+                .description(faker.lorem().characters(5, 255))
+                .preconditions(faker.lorem().characters(5, 255))
+                .build();
     }
 
 }

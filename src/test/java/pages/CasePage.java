@@ -1,7 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.Condition;
-import dto.CaseApi;
+import dto.TestCase;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import wrappers.DropDown;
@@ -45,7 +45,7 @@ public class CasePage extends BasePage {
     }
 
     @Step("Filling Inputs by new Case data with random values")
-    public CasePage fillInInputs(CaseApi caseOne) {
+    public CasePage fillInInputs(TestCase caseOne) {
         log.info("Filling new Case data {}", caseOne);
         $(CASE_TITLE_CSS).clear();
         $(CASE_TITLE_CSS).setValue(caseOne.getTitle());
@@ -59,7 +59,7 @@ public class CasePage extends BasePage {
     }
 
     @Step("Selecting Drops by new Case data with random values")
-    public CasePage setDropDowns(CaseApi caseOne) {
+    public CasePage setDropDowns(TestCase caseOne) {
         log.info("Set Status dropdown {}", caseOne.getStatus());
         new DropDown("Status").setDrop(caseOne.getStatus());
         log.info("Set Severity dropdown {}", caseOne.getSeverity());
@@ -79,7 +79,7 @@ public class CasePage extends BasePage {
     }
 
     @Step("Filling new Case data with random values")
-    public CasePage editInputsData(CaseApi caseOne) {
+    public CasePage editInputsData(TestCase caseOne) {
         log.info("Filling Title field {}", caseOne.getTitle());
         $(CASE_TITLE_CSS).clear();
         $(CASE_TITLE_CSS).setValue(caseOne.getTitle());

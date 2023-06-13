@@ -2,7 +2,7 @@ package utils;
 
 import io.qameta.allure.Step;
 
-public class SleepSomeTime {
+public class DelayTime {
 
     @Step("Wait some time")
     public static void delay(int timeout) {

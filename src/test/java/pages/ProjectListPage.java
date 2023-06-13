@@ -5,7 +5,7 @@ import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import utils.SleepSomeTime;
+import utils.DelayTime;
 
 import java.util.List;
 
@@ -30,7 +30,6 @@ public class ProjectListPage extends BasePage {
         log.info("Waiting visibility of 'Create new project button'");
         $x(PROJECTS_H1_CSS).shouldBe(Condition.visible);
         waitForPageLoaded();
-        SleepSomeTime.delay(5000);
         return this;
     }
 
@@ -57,9 +56,11 @@ public class ProjectListPage extends BasePage {
     @Step("Deleting project from ProjectListPage")
     public void deleteProject(String name) {
         log.info("Deleting project by 'Delete' modal button");
+        $x(DROPDOWN_PROJECT_BUTTON).shouldBe(Condition.visible);
         $x(String.format(DROPDOWN_PROJECT_BUTTON, name)).click();
+        $x(DROPDOWN_DELETE_BUTTON).shouldBe(Condition.visible);
         $x(String.format(DROPDOWN_DELETE_BUTTON, name)).click();
-        SleepSomeTime.delay(3000); //TODO checking time
+        $x(DELETE_MODAL_BUTTON_XPATH).shouldBe(Condition.visible);
         $x(DELETE_MODAL_BUTTON_XPATH).click();
     }
 

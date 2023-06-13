@@ -16,16 +16,14 @@ public class CaseTest extends BaseTest {
         Project project = new ProjectFactory().getRandom();
         project.setAccess(ProjectFactory.getRandomAccessApi());
         Suite suite = new SuiteFactory().getRandom();
-        CaseApi caseApi = new CaseFactoryApi().getRandom();
+        TestCase caseApi = new TestCaseFactory().getRandom();
         projectAdapter.create(project);
         suiteAdapter.create(suite, project.getCode());
-        log.info("Login user");
         loginPage
                 .openPage()
                 .isPageOpened()
                 .login()
                 .isPageOpened();
-        log.info("Opening project page and create Case");
         repositoryPage
                 .openPage(project.getCode())
                 .createCaseButtonClick()
@@ -33,7 +31,6 @@ public class CaseTest extends BaseTest {
                 .fillInInputs(caseApi)
                 .setDropDowns(caseApi)
                 .saveButtonClick();
-        log.info("Checking case title on repository page");
         $(byText(project.getCode()+"-1")).shouldBe(Condition.visible);
         projectListPage.openPage();
         projectAdapter.delete(project.getCode());
@@ -41,27 +38,19 @@ public class CaseTest extends BaseTest {
 
     @Test(description = "Update case by UI")
     public void updateCase() {
-        log.info("Creating new random data for Project");
         Project project = new ProjectFactory().getRandom();
         project.setAccess(ProjectFactory.getRandomAccessApi());
-        log.info("Creating new random data for Suite");
         Suite suite = new SuiteFactory().getRandom();
-        log.info("Creating new random data for CaseOne & CaseNew");
-        CaseApi caseOne = new CaseFactoryApi().getRandom();
-        CaseApi caseNew = new CaseFactoryApi().getRandom();
-        log.info("Creating new project by API");
+        TestCase caseOne = new TestCaseFactory().getRandom();
+        TestCase caseNew = new TestCaseFactory().getRandom();
         projectAdapter.create(project);
-        log.info("Creating new suite by API");
         suiteAdapter.create(suite, project.getCode());
-        log.info("Creating new caseOne by API");
         caseAdapter.create(caseOne, project.getCode());
-        log.info("Log in");
         loginPage
                 .openPage()
                 .isPageOpened()
                 .login()
                 .isPageOpened();
-        log.info("Opening case and filling with new data");
         repositoryPage
                 .openPage(project.getCode())
                 .caseButtonClick(project.getCode())
@@ -70,5 +59,7 @@ public class CaseTest extends BaseTest {
                 .editInputsData(caseNew)
                 .setDropDowns(caseNew)
                 .saveButtonClick();
+        projectListPage.openPage();
+        projectAdapter.delete(project.getCode());
     }
 }

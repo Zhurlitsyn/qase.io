@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 public class LoginTest extends BaseTest {
     @Test(description = "Login user by")
     public void login() {
-        log.info("Login user by positive data");
         loginPage
                 .openPage()
                 .isPageOpened()
