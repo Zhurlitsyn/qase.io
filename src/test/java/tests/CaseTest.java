@@ -8,6 +8,9 @@ import tests.base.Retry;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
+import static pages.SuitePage.MODAL_SUCCESS_DELETE_XPATH;
+import static pages.SuitePage.MODAL_SUCCESS_XPATH;
 
 @Log4j2
 public class CaseTest extends BaseTest {
@@ -61,5 +64,30 @@ public class CaseTest extends BaseTest {
                 .saveButtonClick();
         projectListPage.openPage();
         projectAdapter.delete(project.getCode());
+    }
+    @Test(description = "Delete case by UI")
+    public void deleteCase() {
+        Project project = new ProjectFactory().getRandom();
+        project.setAccess(ProjectFactory.getRandomAccessApi());
+        Suite suite = new SuiteFactory().getRandom();
+        TestCase caseOne = new TestCaseFactory().getRandom();
+        projectAdapter.create(project);
+        suiteAdapter.create(suite, project.getCode());
+        caseAdapter.create(caseOne, project.getCode());
+        loginPage
+                .openPage()
+                .isPageOpened()
+                .login()
+                .isPageOpened(project.getTitle());
+        repositoryPage
+                .openPage(project.getCode())
+                .caseButtonClick(project.getCode())
+                .isEditPageOpened(project.getCode())
+                .deleteCase(project.getCode());
+        $x(MODAL_SUCCESS_XPATH).shouldBe(Condition.visible);
+        $x(MODAL_SUCCESS_DELETE_XPATH).shouldBe(Condition.visible);
+        projectListPage.openPage();
+        projectAdapter.delete(project.getCode());
+
     }
 }

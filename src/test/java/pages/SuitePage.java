@@ -17,9 +17,10 @@ public class SuitePage extends BasePage {
     public static final String SUITE_TITLE_CSS = "#title";
     public static final String SUITE_INPUT_XPATH = "//*[text()='%s']/../..//p[@class]";
     public static final String SUITE_URI = "/project/%s";
-    public static final String CREATE_NEW_SUITE_BUTTON = "Create new suite";
-    public static final String CREATE_SUITE_BUTTON_CSS = "#create-suite-button";
     public static final String CREATE_BUTTON_CSS = "button[type='submit']";
+    public static final String MODAL_SUCCESS_XPATH = "//div[@class='nlvny_']";
+    public static final String MODAL_SUCCESS_CREATE_XPATH = "//*[contains(text(), 'successfully created')]";
+    public static final String MODAL_SUCCESS_DELETE_XPATH = "//*[contains(text(), 'successfully deleted')]";
 
 
     public SuitePage isPageOpened() {
@@ -32,12 +33,6 @@ public class SuitePage extends BasePage {
         log.info("Opening Project repository page");
         open(String.format(SUITE_URI, code));
         return new RepositoryPage();
-    }
-
-    @Step("Click 'Create new suite' button")
-    public SuitePage createNewSuiteButtonClick() {
-        $(byText(CREATE_NEW_SUITE_BUTTON)).click();
-        return this;
     }
 
     @Step("Filling new Suite data with random values")
@@ -72,22 +67,13 @@ public class SuitePage extends BasePage {
         return this;
     }
 
-    @Step("Click Create Button")
-    public SuitePage createSuiteButtonClick() {
-        $(CREATE_SUITE_BUTTON_CSS).click();
-        return this;
-    }
-
-    @Step("Click Create Button")
+    @Step("Click Save Button")
     public RepositoryPage saveButtonClick() {
         $(CREATE_BUTTON_CSS).click();
         return new RepositoryPage();
     }
 
-    @Step("Click Create Button on modal window")
-    public SuitePage createButtonModalClick() {
-        $(CREATE_BUTTON_CSS).click();
-        return this;
-    }
+
+
 }
 

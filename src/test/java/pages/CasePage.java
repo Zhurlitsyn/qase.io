@@ -13,6 +13,8 @@ public class CasePage extends BasePage {
 
     public static final String CASE_URI = "/case/%s/create";
     public static final String EDIT_BUTTON_XPATH = "//span[text()=' Edit']";
+    public final String DELETE_BUTTON_XPATH = "//a[text()='%s-1']//../../..//i[contains(@class, 'fa-trash')]";
+    public static final String DELETE_BUTTON_MODAL_XPATH = "//button/span[text()='Delete']";
     public static final String SAVE_BUTTON_CSS = "button[type='submit']";
     public static final String CASE_TITLE_CSS = "#title";
 
@@ -41,6 +43,14 @@ public class CasePage extends BasePage {
     public CasePage editButtonClick() {
         log.info("Clicking Edit button");
         $x(EDIT_BUTTON_XPATH).click();
+        return this;
+    }
+
+    @Step("Click Delete Button on Case page")
+    public CasePage deleteCase(String code) {
+        log.info("Clicking Delete button");
+        $x(String.format(DELETE_BUTTON_XPATH, code)).click();
+        $x(DELETE_BUTTON_MODAL_XPATH).click();
         return this;
     }
 

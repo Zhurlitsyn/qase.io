@@ -23,7 +23,6 @@ public class ProjectListPage extends BasePage {
             "//*[text()='%s']/ancestor::tr//a[@class='btn btn-dropdown']";
     public static final String DROPDOWN_DELETE_BUTTON =
             "//*[@class='defect-title'][text()='%s']/ancestor::tr//button[text()='Delete']";
-    public String lastProjectCode;
 
 
     public ProjectListPage isPageOpenedClear() {

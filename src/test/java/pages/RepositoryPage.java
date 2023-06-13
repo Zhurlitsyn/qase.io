@@ -17,6 +17,8 @@ public class RepositoryPage extends BasePage {
     public static final String DELETE_SUITE_BUTTON = "//h3/span[text()='%s']/..//i[contains(@class, 'fa-trash')]";
     public static final String CREATE_CASE_BUTTON = "#create-case-button";
     public static final String DELETE_BUTTON_SUITE_MODAL = "//button[@type='submit']";
+    public static final String DELETE_BUTTON_MODAL_XPATH = "//button/span[text()='Delete']";
+
     public static final String OPEN_PROJECT_BY_CODE_XPATH = "//a[@href='/project/%s']";
     public static final String OPEN_CASE_BY_CODE_XPATH = "//a[text()='%s-1']";
 
@@ -64,7 +66,6 @@ public class RepositoryPage extends BasePage {
         log.info("Deleting Suite by 'Delete' button on repository page with all cases");
         $x(String.format(DELETE_SUITE_BUTTON, title)).click();
         $x(DELETE_BUTTON_SUITE_MODAL).click();
-        DelayTime.delay(3000);
         $x(DELETE_MODAL_BUTTON_XPATH).click();
     }
 
