@@ -1,7 +1,7 @@
 package adapters;
 
-import dto.CaseApi;
-import dto.Suite;
+import dto.TestCase;
+
 
 import static adapters.BaseAdapter.BASE_API_URL;
 import static io.restassured.RestAssured.requestSpecification;
@@ -9,7 +9,8 @@ import static io.restassured.RestAssured.requestSpecification;
 public class CaseAdapter {
     private static final String POSTFIX = "/v1/case/";
 
-    public void create(CaseApi caseApi, String code) {
+public void create(TestCase caseApi, String code) {
+
         requestSpecification.
                 body(caseApi).
         when().
@@ -28,7 +29,8 @@ public class CaseAdapter {
                 statusCode(200);
     }
 
-    public static void update(CaseApi caseApi, String code, int id) {
+ public static void update(TestCase caseApi, String code, int id) {
+
         requestSpecification.
                 body(caseApi).
         when().

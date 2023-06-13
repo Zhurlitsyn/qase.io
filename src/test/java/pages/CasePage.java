@@ -1,9 +1,8 @@
 package pages;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.ElementsCollection;
-import dto.CaseApi;
-import dto.CaseUI;
+import dto.TestCase;
+
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import wrappers.DropDown;
@@ -16,7 +15,9 @@ public class CasePage extends BasePage {
 
     public static final String CASE_URI = "/case/%s/create";
     public static final String EDIT_BUTTON_XPATH = "//span[text()=' Edit']";
-    public static final String CHECK_CASE_IN_LIST_XPATH = "//a[@href='/case/%s-1']";
+    public final String DELETE_BUTTON_XPATH = "//a[text()='%s-1']//../../..//i[contains(@class, 'fa-trash')]";
+    public static final String DELETE_BUTTON_MODAL_XPATH = "//button/span[text()='Delete']";
+
     public static final String SAVE_BUTTON_CSS = "button[type='submit']";
     public static final String CASE_TITLE_CSS = "#title";
 
@@ -48,8 +49,17 @@ public class CasePage extends BasePage {
         return this;
     }
 
+    @Step("Click Delete Button on Case page")
+    public CasePage deleteCase(String code) {
+        log.info("Clicking Delete button");
+        $x(String.format(DELETE_BUTTON_XPATH, code)).click();
+        $x(DELETE_BUTTON_MODAL_XPATH).click();
+        return this;
+    }
+
     @Step("Filling Inputs by new Case data with random values")
-    public CasePage fillInInputs(CaseApi caseOne) {
+    public CasePage fillInInputs(TestCase caseOne) {
+
         log.info("Filling new Case data {}", caseOne);
         $(CASE_TITLE_CSS).clear();
         $(CASE_TITLE_CSS).setValue(caseOne.getTitle());
@@ -63,7 +73,8 @@ public class CasePage extends BasePage {
     }
 
     @Step("Selecting Drops by new Case data with random values")
-    public CasePage setDropDowns(CaseApi caseOne) {
+    public CasePage setDropDowns(TestCase caseOne) {
+
         log.info("Set Status dropdown {}", caseOne.getStatus());
         new DropDown("Status").setDrop(caseOne.getStatus());
         log.info("Set Severity dropdown {}", caseOne.getSeverity());
@@ -83,7 +94,8 @@ public class CasePage extends BasePage {
     }
 
     @Step("Filling new Case data with random values")
-    public CasePage editInputsData(CaseApi caseOne) {
+    public CasePage editInputsData(TestCase caseOne) {
+
         log.info("Filling Title field {}", caseOne.getTitle());
         $(CASE_TITLE_CSS).clear();
         $(CASE_TITLE_CSS).setValue(caseOne.getTitle());

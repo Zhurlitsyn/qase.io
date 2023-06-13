@@ -21,8 +21,6 @@ public class ProjectPage extends BasePage {
     public static final String DONT_ALL_CHECK_CSS = "Don't add members";
     public static final String CREATE_BUTTON_CSS = "button[type='submit']";
 
-
-
     public ProjectPage isPageOpened() {
         $(CREATE_BUTTON_CSS).shouldBe(Condition.visible);
         return this;

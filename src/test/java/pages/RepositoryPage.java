@@ -3,10 +3,7 @@ package pages;
 import com.codeborne.selenide.Condition;
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
-import org.openqa.selenium.WebElement;
-import utils.SleepSomeTime;
-
-import java.util.List;
+import utils.DelayTime;
 
 import static com.codeborne.selenide.Selenide.*;
 import static pages.ProjectSettingsPage.DELETE_MODAL_BUTTON_XPATH;
@@ -20,6 +17,9 @@ public class RepositoryPage extends BasePage {
     public static final String DELETE_SUITE_BUTTON = "//h3/span[text()='%s']/..//i[contains(@class, 'fa-trash')]";
     public static final String CREATE_CASE_BUTTON = "#create-case-button";
     public static final String DELETE_BUTTON_SUITE_MODAL = "//button[@type='submit']";
+    public static final String DELETE_BUTTON_MODAL_XPATH = "//button/span[text()='Delete']";
+
+
     public static final String OPEN_PROJECT_BY_CODE_XPATH = "//a[@href='/project/%s']";
     public static final String OPEN_CASE_BY_CODE_XPATH = "//a[text()='%s-1']";
 
@@ -67,7 +67,6 @@ public class RepositoryPage extends BasePage {
         log.info("Deleting Suite by 'Delete' button on repository page with all cases");
         $x(String.format(DELETE_SUITE_BUTTON, title)).click();
         $x(DELETE_BUTTON_SUITE_MODAL).click();
-        SleepSomeTime.delay(3000);
         $x(DELETE_MODAL_BUTTON_XPATH).click();
     }
 

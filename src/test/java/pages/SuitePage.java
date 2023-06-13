@@ -7,8 +7,7 @@ import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import wrappers.Input;
 
-import static com.codeborne.selenide.Condition.checked;
-import static com.codeborne.selenide.Condition.value;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -16,11 +15,12 @@ import static com.codeborne.selenide.Selenide.*;
 public class SuitePage extends BasePage {
 
     public static final String SUITE_TITLE_CSS = "#title";
-    public static final String SUITE_INPUT_XPATH = "//*[text()='%s']/../..//p";
+    public static final String SUITE_INPUT_XPATH = "//*[text()='%s']/../..//p[@class]";
     public static final String SUITE_URI = "/project/%s";
-    public static final String CREATE_NEW_SUITE_BUTTON = "Create new suite";
-    public static final String CREATE_SUITE_BUTTON_CSS = "#create-suite-button";
     public static final String CREATE_BUTTON_CSS = "button[type='submit']";
+    public static final String MODAL_SUCCESS_XPATH = "//div[@class='nlvny_']";
+    public static final String MODAL_SUCCESS_CREATE_XPATH = "//*[contains(text(), 'successfully created')]";
+    public static final String MODAL_SUCCESS_DELETE_XPATH = "//*[contains(text(), 'successfully deleted')]";
 
 
     public SuitePage isPageOpened() {
@@ -35,12 +35,6 @@ public class SuitePage extends BasePage {
         return new RepositoryPage();
     }
 
-    @Step("Click 'Create new suite' button")
-    public SuitePage createNewSuiteButtonClick() {
-        $(byText(CREATE_NEW_SUITE_BUTTON)).click();
-        return this;
-    }
-
     @Step("Filling new Suite data with random values")
     public SuitePage fillIn(Suite suite) {
         log.info("Filling new Suite data {}", suite);
@@ -48,47 +42,37 @@ public class SuitePage extends BasePage {
         $(SUITE_TITLE_CSS).setValue(suite.getTitle());
         log.info("Filling Description field {}", suite.getDescription());
         new Input("Description").write(suite.getDescription());
-        log.info("Filling Preconditions field {}", suite.getPrecondition());
-        new Input("Preconditions").write(suite.getPrecondition());
+        log.info("Filling Preconditions field {}", suite.getPreconditions());
+        new Input("Preconditions").write(suite.getPreconditions());
         return this;
     }
 
-    @Step("Filling new Project data with random values")
+
+    @Step("Filling new Suite data with random values")
     public SuitePage fillInEdit(Suite suite) {
         log.info("Filling new Suite data {}", suite);
         $(SUITE_TITLE_CSS).clear();
         $(SUITE_TITLE_CSS).setValue(suite.getTitle());
         log.info("Filling Description field {}", suite.getDescription());
         new Input("Description").edit(suite.getDescription());
-        log.info("Filling Preconditions field {}", suite.getPrecondition());
-        new Input("Preconditions").edit(suite.getPrecondition());
+        log.info("Filling Preconditions field {}", suite.getPreconditions());
+        new Input("Preconditions").edit(suite.getPreconditions());
         return this;
     }
 
     @Step("Check project data")
     public SuitePage checkSuiteData(Suite suite) {
         $(SUITE_TITLE_CSS).shouldBe(value(suite.getTitle()));
-        $x(String.format(SUITE_INPUT_XPATH, "Description")).shouldHave(value(suite.getDescription()));
-        $x(String.format(SUITE_INPUT_XPATH, "Preconditions")).shouldHave(value(suite.getPrecondition()));
+        $x(String.format(SUITE_INPUT_XPATH, "Description")).shouldHave(text(suite.getDescription()));
+        $x(String.format(SUITE_INPUT_XPATH, "Preconditions")).shouldHave(text(suite.getPreconditions()));
         return this;
     }
 
-    @Step("Click Create Button")
-    public SuitePage createSuiteButtonClick() {
-        $(CREATE_SUITE_BUTTON_CSS).click();
-        return this;
-    }
-
-    @Step("Click Create Button")
-    public SuitePage saveButtonClick() {
+    @Step("Click Save Button")
+    public RepositoryPage saveButtonClick() {
         $(CREATE_BUTTON_CSS).click();
-        return this;
+        return new RepositoryPage();
     }
 
-    @Step("Click Create Button on modal window")
-    public SuitePage createButtonModalClick() {
-        $(CREATE_BUTTON_CSS).click();
-        return this;
-    }
 }
 

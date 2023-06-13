@@ -87,7 +87,5 @@ public class ProjectSettingsPage extends BasePage {
         return this;
     }
 
-
-
 }
 

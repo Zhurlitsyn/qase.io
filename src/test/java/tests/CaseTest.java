@@ -4,27 +4,32 @@ import com.codeborne.selenide.Condition;
 import dto.*;
 import lombok.extern.log4j.Log4j2;
 import org.testng.annotations.Test;
+import tests.base.Retry;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
+import static pages.SuitePage.MODAL_SUCCESS_DELETE_XPATH;
+import static pages.SuitePage.MODAL_SUCCESS_XPATH;
 
 @Log4j2
 public class CaseTest extends BaseTest {
-    @Test(description = "Create project by UI")
+    @Test(description = "Create project by UI", retryAnalyzer = Retry.class)
+
     public void createCase() {
         Project project = new ProjectFactory().getRandom();
         project.setAccess(ProjectFactory.getRandomAccessApi());
         Suite suite = new SuiteFactory().getRandom();
-        CaseApi caseApi = new CaseFactoryApi().getRandom();
+        TestCase caseApi = new TestCaseFactory().getRandom();
         projectAdapter.create(project);
         suiteAdapter.create(suite, project.getCode());
-        log.info("Login user");
+
         loginPage
                 .openPage()
                 .isPageOpened()
                 .login()
-                .isPageOpened();
-        log.info("Opening project page and create Case");
+                .isPageOpened(project.getTitle());
+
         repositoryPage
                 .openPage(project.getCode())
                 .createCaseButtonClick()
@@ -32,7 +37,7 @@ public class CaseTest extends BaseTest {
                 .fillInInputs(caseApi)
                 .setDropDowns(caseApi)
                 .saveButtonClick();
-        log.info("Checking case title on repository page");
+
         $(byText(project.getCode()+"-1")).shouldBe(Condition.visible);
         projectListPage.openPage();
         projectAdapter.delete(project.getCode());
@@ -40,27 +45,21 @@ public class CaseTest extends BaseTest {
 
     @Test(description = "Update case by UI")
     public void updateCase() {
-        log.info("Creating new random data for Project");
         Project project = new ProjectFactory().getRandom();
         project.setAccess(ProjectFactory.getRandomAccessApi());
-        log.info("Creating new random data for Suite");
         Suite suite = new SuiteFactory().getRandom();
-        log.info("Creating new random data for CaseOne & CaseNew");
-        CaseApi caseOne = new CaseFactoryApi().getRandom();
-        CaseApi caseNew = new CaseFactoryApi().getRandom();
-        log.info("Creating new project by API");
+        TestCase caseOne = new TestCaseFactory().getRandom();
+        TestCase caseNew = new TestCaseFactory().getRandom();
         projectAdapter.create(project);
-        log.info("Creating new suite by API");
         suiteAdapter.create(suite, project.getCode());
-        log.info("Creating new caseOne by API");
         caseAdapter.create(caseOne, project.getCode());
-        log.info("Log in");
+
         loginPage
                 .openPage()
                 .isPageOpened()
                 .login()
-                .isPageOpened();
-        log.info("Opening case and filling with new data");
+                .isPageOpened(project.getTitle());
+
         repositoryPage
                 .openPage(project.getCode())
                 .caseButtonClick(project.getCode())
@@ -69,5 +68,33 @@ public class CaseTest extends BaseTest {
                 .editInputsData(caseNew)
                 .setDropDowns(caseNew)
                 .saveButtonClick();
+        projectListPage.openPage();
+        projectAdapter.delete(project.getCode());
+    }
+    @Test(description = "Delete case by UI")
+    public void deleteCase() {
+        Project project = new ProjectFactory().getRandom();
+        project.setAccess(ProjectFactory.getRandomAccessApi());
+        Suite suite = new SuiteFactory().getRandom();
+        TestCase caseOne = new TestCaseFactory().getRandom();
+        projectAdapter.create(project);
+        suiteAdapter.create(suite, project.getCode());
+        caseAdapter.create(caseOne, project.getCode());
+        loginPage
+                .openPage()
+                .isPageOpened()
+                .login()
+                .isPageOpened(project.getTitle());
+        repositoryPage
+                .openPage(project.getCode())
+                .caseButtonClick(project.getCode())
+                .isEditPageOpened(project.getCode())
+                .deleteCase(project.getCode());
+        $x(MODAL_SUCCESS_XPATH).shouldBe(Condition.visible);
+        $x(MODAL_SUCCESS_DELETE_XPATH).shouldBe(Condition.visible);
+        projectListPage.openPage();
+        projectAdapter.delete(project.getCode());
+
+
     }
 }
