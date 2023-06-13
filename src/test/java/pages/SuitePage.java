@@ -30,19 +30,19 @@ public class SuitePage extends BasePage {
 
     @Step("Opening Project repository page")
     public RepositoryPage openPage(String code) {
-        log.info("Opening Project repository page");
+       log.info("Opening Project repository page");
         open(String.format(SUITE_URI, code));
         return new RepositoryPage();
     }
 
     @Step("Filling new Suite data with random values")
     public SuitePage fillIn(Suite suite) {
-        log.info("Filling new Suite data {}", suite);
+       log.info("Filling new Suite data {}", suite);
         $(SUITE_TITLE_CSS).clear();
         $(SUITE_TITLE_CSS).setValue(suite.getTitle());
-        log.info("Filling Description field {}", suite.getDescription());
+       log.info("Filling Description field {}", suite.getDescription());
         new Input("Description").write(suite.getDescription());
-        log.info("Filling Preconditions field {}", suite.getPreconditions());
+       log.info("Filling Preconditions field {}", suite.getPreconditions());
         new Input("Preconditions").write(suite.getPreconditions());
         return this;
     }
@@ -50,12 +50,12 @@ public class SuitePage extends BasePage {
 
     @Step("Filling new Suite data with random values")
     public SuitePage fillInEdit(Suite suite) {
-        log.info("Filling new Suite data {}", suite);
+       log.info("Filling new Suite data {}", suite);
         $(SUITE_TITLE_CSS).clear();
         $(SUITE_TITLE_CSS).setValue(suite.getTitle());
-        log.info("Filling Description field {}", suite.getDescription());
+       log.info("Filling Description field {}", suite.getDescription());
         new Input("Description").edit(suite.getDescription());
-        log.info("Filling Preconditions field {}", suite.getPreconditions());
+       log.info("Filling Preconditions field {}", suite.getPreconditions());
         new Input("Preconditions").edit(suite.getPreconditions());
         return this;
     }

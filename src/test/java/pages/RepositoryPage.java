@@ -31,7 +31,7 @@ public class RepositoryPage extends BasePage {
 
     @Step("Waits opening Project page")
     public RepositoryPage openPage(String code) {
-        log.info("Wait opening Project page");
+       log.info("Wait opening Project page");
         $x(String.format(OPEN_PROJECT_BY_CODE_XPATH, code)).click();
         //open("/projects/" + code);
         waitForPageLoaded();
@@ -64,7 +64,7 @@ public class RepositoryPage extends BasePage {
 
     @Step("Deleting Suite on RepositoryPage")
     public void deleteSuiteButtonRepository(String title) {
-        log.info("Deleting Suite by 'Delete' button on repository page with all cases");
+       log.info("Deleting Suite by 'Delete' button on repository page with all cases");
         $x(String.format(DELETE_SUITE_BUTTON, title)).click();
         $x(DELETE_BUTTON_SUITE_MODAL).click();
         $x(DELETE_MODAL_BUTTON_XPATH).click();

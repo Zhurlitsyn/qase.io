@@ -22,7 +22,7 @@ public class CasePage extends BasePage {
     public static final String CASE_TITLE_CSS = "#title";
 
     public CasePage open(String code) {
-        log.info("Opening Case page");
+       log.info("Opening Case page");
         open(String.format(CASE_URI, code));
         return this;
     }
@@ -44,14 +44,14 @@ public class CasePage extends BasePage {
     }
     @Step("Click Edit Button on Case page")
     public CasePage editButtonClick() {
-        log.info("Clicking Edit button");
+       log.info("Clicking Edit button");
         $x(EDIT_BUTTON_XPATH).click();
         return this;
     }
 
     @Step("Click Delete Button on Case page")
     public CasePage deleteCase(String code) {
-        log.info("Clicking Delete button");
+       log.info("Clicking Delete button");
         $x(String.format(DELETE_BUTTON_XPATH, code)).click();
         $x(DELETE_BUTTON_MODAL_XPATH).click();
         return this;
@@ -60,14 +60,14 @@ public class CasePage extends BasePage {
     @Step("Filling Inputs by new Case data with random values")
     public CasePage fillInInputs(TestCase caseOne) {
 
-        log.info("Filling new Case data {}", caseOne);
+       log.info("Filling new Case data {}", caseOne);
         $(CASE_TITLE_CSS).clear();
         $(CASE_TITLE_CSS).setValue(caseOne.getTitle());
-        log.info("Filling Description field {}", caseOne.getDescription());
+       log.info("Filling Description field {}", caseOne.getDescription());
         new Input("Description").writeCase(caseOne.getDescription());
-        log.info("Filling Pre-conditions field {}", caseOne.getPreconditions());
+       log.info("Filling Pre-conditions field {}", caseOne.getPreconditions());
         new Input("Pre-conditions").writeCase(caseOne.getPreconditions());
-        log.info("Filling Post-conditions field {}", caseOne.getPostconditions());
+       log.info("Filling Post-conditions field {}", caseOne.getPostconditions());
         new Input("Post-conditions").writeCase(caseOne.getPostconditions());
         return this;
     }
@@ -75,17 +75,17 @@ public class CasePage extends BasePage {
     @Step("Selecting Drops by new Case data with random values")
     public CasePage setDropDowns(TestCase caseOne) {
 
-        log.info("Set Status dropdown {}", caseOne.getStatus());
+       log.info("Set Status dropdown {}", caseOne.getStatus());
         new DropDown("Status").setDrop(caseOne.getStatus());
-        log.info("Set Severity dropdown {}", caseOne.getSeverity());
+       log.info("Set Severity dropdown {}", caseOne.getSeverity());
         new DropDown("Severity").setDrop(caseOne.getSeverity());
-        log.info("Set Priority dropdown {}", caseOne.getPriority());
+       log.info("Set Priority dropdown {}", caseOne.getPriority());
         new DropDown("Priority").setDrop(caseOne.getPriority());
-        log.info("Set Layer dropdown {}", caseOne.getLayer());
+       log.info("Set Layer dropdown {}", caseOne.getLayer());
         new DropDown("Layer").setDrop(caseOne.getLayer());
-        log.info("Set Behavior dropdown {}", caseOne.getBehavior());
+       log.info("Set Behavior dropdown {}", caseOne.getBehavior());
         new DropDown("Behavior").setDrop(caseOne.getBehavior());
-        log.info("Set Type dropdown {}", caseOne.getType());
+       log.info("Set Type dropdown {}", caseOne.getType());
         new DropDown("Type").setDrop(caseOne.getType());
         //TODO index of none Suite choice???
         /*log.info("Set SuiteID dropdown {}", caseOne.getSuite_id());
@@ -96,15 +96,15 @@ public class CasePage extends BasePage {
     @Step("Filling new Case data with random values")
     public CasePage editInputsData(TestCase caseOne) {
 
-        log.info("Filling Title field {}", caseOne.getTitle());
+       log.info("Filling Title field {}", caseOne.getTitle());
         $(CASE_TITLE_CSS).clear();
         $(CASE_TITLE_CSS).setValue(caseOne.getTitle());
-        log.info("Editing Inputs by new Case data {}", caseOne);
-        log.info("Filling Description field {}", caseOne.getDescription());
+       log.info("Editing Inputs by new Case data {}", caseOne);
+       log.info("Filling Description field {}", caseOne.getDescription());
         new Input("Description").editCase(caseOne.getDescription());
-        log.info("Filling Pre-conditions field {}", caseOne.getPreconditions());
+       log.info("Filling Pre-conditions field {}", caseOne.getPreconditions());
         new Input("Pre-conditions").editCase(caseOne.getPreconditions());
-        log.info("Filling Post-conditions field {}", caseOne.getPostconditions());
+       log.info("Filling Post-conditions field {}", caseOne.getPostconditions());
         new Input("Post-conditions").editCase(caseOne.getPostconditions());
         return this;
     }

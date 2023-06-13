@@ -46,9 +46,5 @@ public class DropDown {
 
     }
 
-    public void ByVisibleElement(WebElement Element) {
-        JavascriptExecutor js = (JavascriptExecutor) WebDriverRunner.getWebDriver();
-        js.executeScript("arguments[0].scrollIntoView();", Element);
-    }
 
 }

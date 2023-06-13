@@ -26,13 +26,13 @@ public class ProjectListPage extends BasePage {
 
 
     public ProjectListPage isPageOpenedClear() {
-        log.info("Waiting visibility of 'Create new project button'");
+       log.info("Waiting visibility of 'Create new project button'");
         waitForPageLoaded();
         $x(PROJECTS_H1_CSS).shouldBe(Condition.visible);
         return this;
     }
     public ProjectListPage isPageOpened(String name) {
-        log.info("Waiting visibility of 'Project' list");
+       log.info("Waiting visibility of 'Project' list");
         waitForPageLoaded();
         $x(String.format(PROJECTS_CODES, name)).shouldBe(Condition.visible);
         return this;
@@ -40,7 +40,7 @@ public class ProjectListPage extends BasePage {
 
     @Step("Waits opening Project page")
     public ProjectListPage openPage() {
-        log.info("Wait opening Project page");
+       log.info("Wait opening Project page");
         open("/projects");
         waitForPageLoaded();
         return this;
@@ -54,13 +54,13 @@ public class ProjectListPage extends BasePage {
 
     @Step("Create List of Project Names")
     public Integer getCountOfProjects() {
-        log.info("Get count of Projects");
+       log.info("Get count of Projects");
         return $$x(PROJECTS_CODES).size();
     }
 
     @Step("Deleting project from ProjectListPage")
     public void deleteProject(String name) {
-        log.info("Deleting project by 'Delete' modal button");
+       log.info("Deleting project by 'Delete' modal button");
         $x(String.format(DROPDOWN_PROJECT_BUTTON, name)).shouldBe(Condition.visible);
         $x(String.format(DROPDOWN_PROJECT_BUTTON, name)).click();
         $x(String.format(DROPDOWN_DELETE_BUTTON, name)).click();

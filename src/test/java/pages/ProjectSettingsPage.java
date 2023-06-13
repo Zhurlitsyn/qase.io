@@ -36,7 +36,7 @@ public class ProjectSettingsPage extends BasePage {
 
     @Step("Wait opening Project Settings page")
     public ProjectSettingsPage openSettingsPage(String code) {
-        log.info("Wait opening Project Settings page");
+       log.info("Wait opening Project Settings page");
         open(String.format(PROJECT_URI, code));
         waitForPageLoaded();
         return this;
@@ -50,7 +50,7 @@ public class ProjectSettingsPage extends BasePage {
     }
 
     public ProjectSettingsPage updateProjectData(Project project) {
-        log.info("Filling new Account data {}", project);
+       log.info("Filling new Account data {}", project);
         $(PROJECT_NAME_CSS).clear();
         $(PROJECT_NAME_CSS).setValue(project.getTitle());
         $(PROJECT_CODE_CSS).clear();

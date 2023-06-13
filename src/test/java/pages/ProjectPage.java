@@ -28,7 +28,7 @@ public class ProjectPage extends BasePage {
 
     @Step("Filling new Project data with random values")
     public ProjectPage fillIn(Project project) {
-        log.info("Filling new Account data {}", project);
+       log.info("Filling new Account data {}", project);
         $(PROJECT_NAME_CSS).clear();
         $(PROJECT_NAME_CSS).setValue(project.getTitle());
         $(PROJECT_CODE_CSS).clear();
@@ -41,14 +41,14 @@ public class ProjectPage extends BasePage {
 
     @Step("Setting Project access with random values")
     public ProjectPage setRandomAccess(Project project) {
-        log.info("Setting Project access with random values {}", project.getAccess());
+       log.info("Setting Project access with random values {}", project.getAccess());
         $x("//input[@value='" + project.getAccess() + "']").click();
         return this;
     }
 
     @Step("Setting new Project data with Private access (Add All)")
     public ProjectPage setPrivateAll(Project project) {
-        log.info("Filling new Account data {}", project);
+       log.info("Filling new Account data {}", project);
         $(byText(PRIVATE_CHECK_CSS)).click();
         $(byText(ADD_ALL_CHECK_CSS)).click();
         return this;
@@ -56,7 +56,7 @@ public class ProjectPage extends BasePage {
 
     @Step("Setting new Project data with Private access (Don't All)")
     public ProjectPage setPrivate(Project project) {
-        log.info("Filling new Account data {}", project);
+       log.info("Filling new Account data {}", project);
         $(byText(PRIVATE_CHECK_CSS)).click();
         $(byText(DONT_ALL_CHECK_CSS)).click();
         return this;
