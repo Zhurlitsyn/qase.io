@@ -12,9 +12,9 @@ name: Running tests
 
 on:
   push:
-    branches: [ "suite_case" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "suite_case" ]
+    branches: [ "master" ]
 
 jobs:
   test:
