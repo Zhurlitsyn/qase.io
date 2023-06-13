@@ -19,6 +19,7 @@ public class RepositoryPage extends BasePage {
     public static final String DELETE_BUTTON_SUITE_MODAL = "//button[@type='submit']";
     public static final String DELETE_BUTTON_MODAL_XPATH = "//button/span[text()='Delete']";
 
+
     public static final String OPEN_PROJECT_BY_CODE_XPATH = "//a[@href='/project/%s']";
     public static final String OPEN_CASE_BY_CODE_XPATH = "//a[text()='%s-1']";
 

@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 public class LoginTest extends BaseTest {
     @Test(description = "Login user by")
     public void login() {
+
         loginPage
                 .openPage()
                 .isPageOpened()

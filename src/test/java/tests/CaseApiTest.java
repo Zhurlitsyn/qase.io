@@ -16,6 +16,7 @@ public class CaseApiTest extends ApiBaseTest {
         suiteAdapter.create(suite, project.getCode());
         caseAdapter.create(caseOne, project.getCode());
         projectAdapter.delete(project.getCode());
+
     }
 
     @Test(description = "Delete project data by API")
@@ -43,5 +44,6 @@ public class CaseApiTest extends ApiBaseTest {
         caseAdapter.create(caseOne, project.getCode());
         caseAdapter.update(caseNew, project.getCode(), 1);
         projectAdapter.delete(project.getCode());
+
     }
 }

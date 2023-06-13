@@ -2,10 +2,12 @@ package pages;
 
 import com.codeborne.selenide.Condition;
 import dto.TestCase;
+
 import io.qameta.allure.Step;
 import lombok.extern.log4j.Log4j2;
 import wrappers.DropDown;
 import wrappers.Input;
+
 import static com.codeborne.selenide.Selenide.*;
 
 @Log4j2
@@ -15,6 +17,7 @@ public class CasePage extends BasePage {
     public static final String EDIT_BUTTON_XPATH = "//span[text()=' Edit']";
     public final String DELETE_BUTTON_XPATH = "//a[text()='%s-1']//../../..//i[contains(@class, 'fa-trash')]";
     public static final String DELETE_BUTTON_MODAL_XPATH = "//button/span[text()='Delete']";
+
     public static final String SAVE_BUTTON_CSS = "button[type='submit']";
     public static final String CASE_TITLE_CSS = "#title";
 
@@ -56,6 +59,7 @@ public class CasePage extends BasePage {
 
     @Step("Filling Inputs by new Case data with random values")
     public CasePage fillInInputs(TestCase caseOne) {
+
         log.info("Filling new Case data {}", caseOne);
         $(CASE_TITLE_CSS).clear();
         $(CASE_TITLE_CSS).setValue(caseOne.getTitle());
@@ -70,6 +74,7 @@ public class CasePage extends BasePage {
 
     @Step("Selecting Drops by new Case data with random values")
     public CasePage setDropDowns(TestCase caseOne) {
+
         log.info("Set Status dropdown {}", caseOne.getStatus());
         new DropDown("Status").setDrop(caseOne.getStatus());
         log.info("Set Severity dropdown {}", caseOne.getSeverity());
@@ -90,6 +95,7 @@ public class CasePage extends BasePage {
 
     @Step("Filling new Case data with random values")
     public CasePage editInputsData(TestCase caseOne) {
+
         log.info("Filling Title field {}", caseOne.getTitle());
         $(CASE_TITLE_CSS).clear();
         $(CASE_TITLE_CSS).setValue(caseOne.getTitle());

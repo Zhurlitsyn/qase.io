@@ -22,6 +22,7 @@ public class Input {
         DelayTime.delay(500);
         $x((String.format(BASE_LOCATOR_CASE_XPATH, label))).setValue(text);
         DelayTime.delay(300);
+
     }
 
     public void editCase(String text) {
@@ -30,12 +31,14 @@ public class Input {
         DelayTime.delay(500);
         $x((String.format(BASE_LOCATOR_CASE_XPATH + "[@class='']", label))).setValue(text);
         DelayTime.delay(300);
+
     }
 
     public void write(String text) {
         log.info("Writing {} into {}", text, label);
         $x((String.format(BASE_LOCATOR_SUITE_XPATH, label))).click();
         DelayTime.delay(300);
+
         $x((String.format(BASE_LOCATOR_SUITE_XPATH, label))).clear();
         $x((String.format(BASE_LOCATOR_SUITE_XPATH, label))).setValue(text);
         DelayTime.delay(300);
@@ -47,6 +50,15 @@ public class Input {
         DelayTime.delay(300);
         $x((String.format(BASE_LOCATOR_SUITE_XPATH + "[@class='']", label))).setValue(text);
         DelayTime.delay(2000);
+    }
+
+    public void edit(String text) {
+        log.info("Writing new {} into {}", text, label);
+        $x((String.format(BASE_LOCATOR_SUITE_XPATH + "[@class='']", label))).click();
+        SleepSomeTime.delay(300);
+        $x((String.format(BASE_LOCATOR_SUITE_XPATH + "[@class='']", label))).clear();
+        $x((String.format(BASE_LOCATOR_SUITE_XPATH + "[@class='']", label))).setValue(text);
+        SleepSomeTime.delay(2000);
     }
 
 }

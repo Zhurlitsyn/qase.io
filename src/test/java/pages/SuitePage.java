@@ -47,7 +47,8 @@ public class SuitePage extends BasePage {
         return this;
     }
 
-    @Step("Filling new Project data with random values")
+
+    @Step("Filling new Suite data with random values")
     public SuitePage fillInEdit(Suite suite) {
         log.info("Filling new Suite data {}", suite);
         $(SUITE_TITLE_CSS).clear();
@@ -72,8 +73,6 @@ public class SuitePage extends BasePage {
         $(CREATE_BUTTON_CSS).click();
         return new RepositoryPage();
     }
-
-
 
 }
 

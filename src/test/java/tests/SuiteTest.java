@@ -22,6 +22,7 @@ public class SuiteTest extends BaseTest {
         project.setAccess(ProjectFactory.getRandomAccessApi());
         Suite suite = new SuiteFactory().getRandom();
         projectAdapter.create(project);
+
         loginPage
                 .openPage()
                 .isPageOpened()
@@ -35,6 +36,7 @@ public class SuiteTest extends BaseTest {
                 .saveButtonClick();
         $x(MODAL_SUCCESS_XPATH).shouldBe(Condition.visible);
         $x(MODAL_SUCCESS_CREATE_XPATH).shouldBe(Condition.visible);
+
         projectListPage.openPage();
         projectAdapter.delete(project.getCode());
     }
@@ -87,4 +89,5 @@ public class SuiteTest extends BaseTest {
         projectListPage.openPage();
         projectAdapter.delete(project.getCode());
     }
+
 }

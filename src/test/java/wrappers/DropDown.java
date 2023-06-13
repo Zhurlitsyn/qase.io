@@ -7,12 +7,18 @@ import org.openqa.selenium.WebElement;
 
 import static com.codeborne.selenide.Selenide.*;
 
+
+import java.util.List;
+
+import static com.codeborne.selenide.Selenide.*;
+
 @Log4j2
 public class DropDown {
     String label;
     String dropdown = "//label[text()='%s']/../div";
     String baseLocator = "//div[contains(@data-popper-placement, 'bottom-start')]//div[contains(@class, 'pG08Lh')][%s]";
     String modalLocator = "//div[@class='vp8Qwu']";
+
 
     public DropDown(String label) {
         this.label = label;
@@ -23,6 +29,7 @@ public class DropDown {
         $x(String.format(dropdown, label)).click();
         $x(modalLocator).shouldBe(Condition.visible);
         //SleepSomeTime.delay(1000);
+
         log.info("Select value {}", label);
         WebElement se = $x(String.format(baseLocator, d));
         log.info("Checking visibility of  {}", d);
@@ -31,6 +38,12 @@ public class DropDown {
         se.click();
         $x(modalLocator).shouldBe(Condition.disappear);
         //SleepSomeTime.delay(500);
+    }
+
+    public void ByVisibleElement(WebElement Element) {
+        JavascriptExecutor js = (JavascriptExecutor) WebDriverRunner.getWebDriver();
+        js.executeScript("arguments[0].scrollIntoView();", Element);
+
     }
 
     public void ByVisibleElement(WebElement Element) {

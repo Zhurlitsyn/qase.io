@@ -15,6 +15,7 @@ import static pages.SuitePage.MODAL_SUCCESS_XPATH;
 @Log4j2
 public class CaseTest extends BaseTest {
     @Test(description = "Create project by UI", retryAnalyzer = Retry.class)
+
     public void createCase() {
         Project project = new ProjectFactory().getRandom();
         project.setAccess(ProjectFactory.getRandomAccessApi());
@@ -22,11 +23,13 @@ public class CaseTest extends BaseTest {
         TestCase caseApi = new TestCaseFactory().getRandom();
         projectAdapter.create(project);
         suiteAdapter.create(suite, project.getCode());
+
         loginPage
                 .openPage()
                 .isPageOpened()
                 .login()
                 .isPageOpened(project.getTitle());
+
         repositoryPage
                 .openPage(project.getCode())
                 .createCaseButtonClick()
@@ -34,6 +37,7 @@ public class CaseTest extends BaseTest {
                 .fillInInputs(caseApi)
                 .setDropDowns(caseApi)
                 .saveButtonClick();
+
         $(byText(project.getCode()+"-1")).shouldBe(Condition.visible);
         projectListPage.openPage();
         projectAdapter.delete(project.getCode());
@@ -49,11 +53,13 @@ public class CaseTest extends BaseTest {
         projectAdapter.create(project);
         suiteAdapter.create(suite, project.getCode());
         caseAdapter.create(caseOne, project.getCode());
+
         loginPage
                 .openPage()
                 .isPageOpened()
                 .login()
                 .isPageOpened(project.getTitle());
+
         repositoryPage
                 .openPage(project.getCode())
                 .caseButtonClick(project.getCode())
@@ -88,6 +94,7 @@ public class CaseTest extends BaseTest {
         $x(MODAL_SUCCESS_DELETE_XPATH).shouldBe(Condition.visible);
         projectListPage.openPage();
         projectAdapter.delete(project.getCode());
+
 
     }
 }
