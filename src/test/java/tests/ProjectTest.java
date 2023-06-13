@@ -21,7 +21,7 @@ public class ProjectTest extends BaseTest {
                 .openPage()
                 .isPageOpened()
                 .login()
-                .isPageOpened()
+                .isPageOpenedClear()
                 .createButtonClick();
         projectPage
                 .isPageOpened()
@@ -48,7 +48,7 @@ public class ProjectTest extends BaseTest {
                 .openPage()
                 .isPageOpened()
                 .login()
-                .isPageOpened();
+                .isPageOpened(project.getTitle());
         projectSettingsPage
                 .openSettingsPage(project.getCode())
                 .updateProjectData(projectNew)
@@ -63,20 +63,16 @@ public class ProjectTest extends BaseTest {
         Project project = new ProjectFactory().getRandom();
         project.setAccess(ProjectFactory.getRandomAccessApi());
         projectAdapter.create(project);
-        int start = 0;
         loginPage
                 .openPage()
                 .isPageOpened()
                 .login()
-                .isPageOpened();
-        start = projectListPage.getCountOfProjects() - 1;
-
+                .isPageOpened(project.getTitle());
         projectSettingsPage
                 .openSettingsPage(project.getCode())
                 .deleteButtonClick();
-
-        projectListPage.isPageOpened();
-        $$x(PROJECTS_CODES).shouldHave(CollectionCondition.size(start));
+        projectListPage.isPageOpenedClear();
+        $x(String.format(PROJECTS_CODES, project.getTitle())).shouldBe(Condition.disappear);
     }
 
     @Test(description = "Delete project from Project list page")
@@ -84,18 +80,14 @@ public class ProjectTest extends BaseTest {
         Project project = new ProjectFactory().getRandom();
         project.setAccess(ProjectFactory.getRandomAccessApi());
         projectAdapter.create(project);
-        int start = 0;
         loginPage
                 .openPage()
                 .isPageOpened()
                 .login()
-                .isPageOpened();
-        start = projectListPage.getCountOfProjects() - 1;
-
+                .isPageOpened(project.getTitle());
         projectListPage
-                .openPage()
                 .deleteProject(project.getTitle());
-        $$x(PROJECTS_CODES).shouldHave(CollectionCondition.size(start));
+        $x(String.format(PROJECTS_CODES, project.getTitle())).shouldBe(Condition.disappear);
     }
 
 }

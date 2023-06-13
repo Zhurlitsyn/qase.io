@@ -11,6 +11,6 @@ public class LoginTest extends BaseTest {
                 .openPage()
                 .isPageOpened()
                 .login()
-                .isPageOpened();
+                .isPageOpenedClear();
     }
 }

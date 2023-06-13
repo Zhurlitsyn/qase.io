@@ -24,7 +24,7 @@ public class SuiteTest extends BaseTest {
                 .openPage()
                 .isPageOpened()
                 .login()
-                .isPageOpened();
+                .isPageOpened(project.getTitle());
         suitePage
                 .openPage(project.getCode())
                 .createSuiteButtonClick()
@@ -48,7 +48,7 @@ public class SuiteTest extends BaseTest {
                 .openPage()
                 .isPageOpened()
                 .login()
-                .isPageOpened();
+                .isPageOpened(project.getTitle());
         suitePage
                 .openPage(project.getCode())
                 .editButtonClickRepository(suite.getTitle())

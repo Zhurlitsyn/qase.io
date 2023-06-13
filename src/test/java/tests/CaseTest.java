@@ -23,7 +23,7 @@ public class CaseTest extends BaseTest {
                 .openPage()
                 .isPageOpened()
                 .login()
-                .isPageOpened();
+                .isPageOpened(project.getTitle());
         repositoryPage
                 .openPage(project.getCode())
                 .createCaseButtonClick()
@@ -50,7 +50,7 @@ public class CaseTest extends BaseTest {
                 .openPage()
                 .isPageOpened()
                 .login()
-                .isPageOpened();
+                .isPageOpened(project.getTitle());
         repositoryPage
                 .openPage(project.getCode())
                 .caseButtonClick(project.getCode())
