@@ -8,7 +8,7 @@
 # Victor Zhurlitsyn, 2023
 
 
-name: Running tests
+name: Running testS
 
 on:
   push:
