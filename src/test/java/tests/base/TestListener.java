@@ -1,5 +1,6 @@
 package tests.base;
 
+import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -24,13 +25,13 @@ public class TestListener implements ITestListener {
     public void onTestFailure(ITestResult iTestResult) {
         System.out.println(String.format("======================================== FAILED TEST %s Duration: %ss ========================================", iTestResult.getName(), this.getExecutionTime(iTestResult)));
         WebDriver driver = (WebDriver) iTestResult.getTestContext().getAttribute("driver");
-        AllureUtils.takeScreenshot();
+        //AllureUtils.takeScreenshot(driver);
     }
 
     public void onTestSkipped(ITestResult iTestResult) {
         System.out.println(String.format("======================================== SKIPPING TEST %s ========================================", iTestResult.getName()));
         WebDriver driver = (WebDriver) iTestResult.getTestContext().getAttribute("driver");
-        AllureUtils.takeScreenshot();
+        //AllureUtils.takeScreenshot(driver);
     }
 
     public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {

@@ -38,8 +38,7 @@ public class CaseTest extends BaseTest {
                 .setDropDowns(caseApi)
                 .saveButtonClick();
 
-        $(byText(project.getCode()+"-1")).shouldBe(Condition.visible);
-        projectListPage.openPage();
+        $(byText(project.getCode() + "-1")).shouldBe(Condition.visible);
         projectAdapter.delete(project.getCode());
     }
 
@@ -68,9 +67,9 @@ public class CaseTest extends BaseTest {
                 .editInputsData(caseNew)
                 .setDropDowns(caseNew)
                 .saveButtonClick();
-        projectListPage.openPage();
         projectAdapter.delete(project.getCode());
     }
+
     @Test(description = "Delete case by UI")
     public void deleteCase() {
         Project project = new ProjectFactory().getRandom();
@@ -92,9 +91,6 @@ public class CaseTest extends BaseTest {
                 .deleteCase(project.getCode());
         $x(MODAL_SUCCESS_XPATH).shouldBe(Condition.visible);
         $x(MODAL_SUCCESS_DELETE_XPATH).shouldBe(Condition.visible);
-        projectListPage.openPage();
         projectAdapter.delete(project.getCode());
-
-
     }
 }

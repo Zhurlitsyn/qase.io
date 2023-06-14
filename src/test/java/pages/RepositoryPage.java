@@ -67,7 +67,6 @@ public class RepositoryPage extends BasePage {
        log.info("Deleting Suite by 'Delete' button on repository page with all cases");
         $x(String.format(DELETE_SUITE_BUTTON, title)).click();
         $x(DELETE_BUTTON_SUITE_MODAL).click();
-        $x(DELETE_MODAL_BUTTON_XPATH).click();
     }
 
 }

@@ -12,14 +12,14 @@ import org.testng.ITestResult;
 @Log4j2
 public class Retry implements IRetryAnalyzer {
     private int attempt = 1;
-    private static final int MAX_RETRY = 3;
+    private static final int MAX_RETRY = 2;
 
     public Retry() {
     }
 
     public boolean retry(ITestResult iTestResult) {
         if (!iTestResult.isSuccess()) {
-            if (this.attempt < 3) {
+            if (this.attempt < MAX_RETRY) {
                 ++this.attempt;
                 iTestResult.setStatus(2);
                 log.warn("Test {} failed once again.", iTestResult.getName());

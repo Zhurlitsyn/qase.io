@@ -39,6 +39,7 @@ public class CasePage extends BasePage {
 
     @Step("Click Save Button")
     public RepositoryPage saveButtonClick() {
+        log.info("Clicking Save button");
         $(SAVE_BUTTON_CSS).click();
         return new RepositoryPage();
     }
