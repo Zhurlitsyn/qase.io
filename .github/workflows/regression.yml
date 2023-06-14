@@ -34,4 +34,4 @@ jobs:
         USERNAME: ${{ secrets.username }}
         PASSWORD: ${{ secrets.password }}
         TOKEN: ${{ secrets.token }}
-      run: mvn clean test -Dtest=CaseTest -Dusername=$USERNAME -Dpassword=$PASSWORD -Dapi.token=$TOKEN
+      run: mvn clean test -Dusername=$USERNAME -Dpassword=$PASSWORD -Dapi.token=$TOKEN
