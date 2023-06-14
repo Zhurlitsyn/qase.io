@@ -5,7 +5,7 @@
 # They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support
 # documentation.
-#Victor Zhurlitsyn, 2023
+# Victor Zhurlitsyn, 2023
 
 
 name: Running tests
@@ -29,9 +29,9 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
+    - name: Qase tests
       env:
         USERNAME: ${{ secrets.username }}
         PASSWORD: ${{ secrets.password }}
         TOKEN: ${{ secrets.token }}
-      run: mvn clean test -Dusername=$USERNAME -Dpassword=$PASSWORD -Dapi.token=$TOKEN
+      run: mvn clean test -Dtest=CaseTest -Dusername=$USERNAME -Dpassword=$PASSWORD -Dapi.token=$TOKEN
